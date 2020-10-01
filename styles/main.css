@@ -1,0 +1,54 @@
+body {
+    background-color: #eee;
+    color: #222831;
+}
+
+.jumbotron {
+    background-color: #bf4e6e;
+    color: #ffffff;
+}
+
+.navbar {
+    background-color: #b83b5e;
+}
+
+.nav-tabs {
+    background-color: #e23e57;
+}
+
+.nav-tabs a {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.nav-tabs .nav-link.active {
+    color: #ffffff;
+    background-color: transparent;
+    border-color: transparent transparent #393e46;
+    border-bottom: 5px solid;
+}
+
+.nav-tabs .nav-link.active:hover {
+    color: #ffffff;
+    background-color: #cb374e;
+    border-color: transparent transparent #393e46;
+    border-bottom: 5px solid;
+}
+
+.nav-tabs .nav-link:hover {
+    background-color: #cb374e;
+    border-color: transparent;
+}
+
+.btn-primary {
+    background-color: #364f6b;
+    border-color: #364f6b;
+}
+
+.spinner-border {
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: calc(50% - (5rem / 2));
+    right: calc(50% - (5rem / 2));
+}
