@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | ArtHub</title>
+    <title>Contact | ArtHub</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/main.css">
 </head>
@@ -36,29 +36,29 @@
     <form class="m-3" id="contactForm">
         <div class="row mb-3">
             <div class="col">
-                <input class="form-control" name="name" placeholder="Name" type="text" required />
+                <input class="form-control" id="name" name="name" placeholder="Name" type="text" required />
             </div>
 
             <div class="col">
-                <input class="form-control" name="email" placeholder="E-mail" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+                <input class="form-control" id="email" name="email" placeholder="E-mail" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
             </div>
         </div>
         
-        <input class="form-control mb-3" name="subject" placeholder="Subject" type="text" required />
+        <input class="form-control mb-3" id="subject" name="subject" placeholder="Subject" type="text" required />
         
-        <textarea class="form-control mb-3" name="message" placeholder="Message" rows="6"  style="resize:vertical;" required></textarea>
+        <textarea class="form-control mb-3" id="message" name="message" placeholder="Message" rows="6"  style="resize:vertical;" required></textarea>
         
-        <input type="submit" class="btn btn-danger" value="Send"/>
+        <input type="button" class="btn btn-danger" value="Send"/>
         <input type="reset" class="btn btn-secondary" value="Clear" />
     </form>
       
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="scripts/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-</body>
-<script>
-    let pages = ['index', 'gallery', 'contact'];
+
+    <script>
     $(document).ready(function() {
+        let pages = ['index', 'gallery', 'contact'];
         let pathname = window.location.pathname;
         
         $('.navbar-nav .nav-item .nav-link').each(function(i) {
@@ -68,15 +68,26 @@
                 $(this).removeClass('active');
         });
         
-        $("input[type='submit']").click(function() {
+        $("input[type='button']").click(function() {
             let body = $('body').html();
 
             $('body').html(
                 `<div class="spinner-border text-danger mx-auto" style="width: 8rem; height: 8rem; margin: auto;"></div>`
             );
 
-            setTimeout(function() {
-                $('#contactForm').submit();
+            $.ajax({
+                type: 'POST',
+                url: 'php/contact.php',
+                data: {
+                    name: $("#name").val(),
+                    email: $("#email").val(),
+                    subject: $("#subject").val(),
+                    message: $("#message").val()
+                },
+                success: function () {}
+            });
+
+            setTimeout(function () {
                 $('body').html(body);
                 
                 $('#contactForm').html(
@@ -94,8 +105,9 @@
                         Phone: +91 9833396142
                     </p>`
                 )
-            }, 3000)
+            }, 2500);
         });
     });
-</script>
+    </script>
+</body>
 </html>
