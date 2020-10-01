@@ -1,4 +1,6 @@
 <?php
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
     $emailto = "vanshjain1224@gmail.com";
 
     $name = (isset($_POST['name']) ? $_POST['name']: '');
@@ -6,7 +8,9 @@
     $subject = (isset($_POST['subject']) ? $_POST['subject']: '');
     $body = (isset($_POST['message']) ? $_POST['message']: '');
     
-    $header = "From:" . $email . "\r\n";
+    $headers  = 'MIME-Version: 1.0' . "\r\n";
+    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
+    $headers .= "From:" . $email . "\r\n";
     
     $message = "A new message was sent to you from your website.\n\n";
 
@@ -22,5 +26,5 @@
     $message .= "\n";
     $message .= $body;
 
-    mail($emailto, $subject, $message, $header)
+    mail($emailto, $subject, $message, $headers)
 ?>
