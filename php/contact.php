@@ -20,8 +20,7 @@
     $message .= $email;
     $message .= "\n\n";
 
-    $message .= "Message: ";
-    $message .= "\n";
+    $message .= "Message: \n";
     $message .= $body;
 
     mail($emailto, $subject, $message, $headers)
