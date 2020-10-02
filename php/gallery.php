@@ -1,0 +1,32 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "cia2_project";
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+$type = $_GET['type'];
+
+$sql = "SELECT aname, artist, price FROM artwork WHERE atype='".$type."'";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    echo "<div class='card-deck'>";
+    while($row = $result->fetch_assoc()) {
+        echo    "<div class='card mb-3 shadow' style='max-width: 18rem;'>
+                    <img src='images/art/".$row["aname"].".jpg' class='card-img-top img-fluid'>
+                    <div class='card-body'>
+                        <h5 class='card-title'>".$row["aname"]."</h5>
+                        <h6 class='card-subtitle mb-2 text-muted'>".$row["artist"]."</h6>
+                        <p class='card-text'>Price: ₹".$row["price"]."</p>
+                    </div>
+                </div>";
+    }
+    echo "</div>";
+}
+$conn->close();
+?>

@@ -75,17 +75,12 @@
                 `<div class="spinner-border text-danger mx-auto" style="width: 8rem; height: 8rem; margin: auto;"></div>`
             );
 
-            $.ajax({
-                type: 'POST',
-                url: 'php/contact.php',
-                data: {
-                    name: $("#name").val(),
-                    email: $("#email").val(),
-                    subject: $("#subject").val(),
-                    message: $("#message").val()
-                },
-                success: function () {}
-            });
+            $.post("php/contact.php", {
+                name: $("#name").val(),
+                email: $("#email").val(),
+                subject: $("#subject").val(),
+                message: $("#message").val()
+            }, function () {});
 
             setTimeout(function () {
                 $('body').html(body);
@@ -96,7 +91,7 @@
                     </h6>
                     <p class="m-3">
                         We have received your message and will get back to you as soon as possible.
-                        If your inquiry is urgent, please use the phone number below to talk to one of us.
+                        If your inquiry is urgent, please use the phone number below to contact us.
                         <br><br>
                         Regards,
                         <br>
