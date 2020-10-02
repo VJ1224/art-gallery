@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | ArtHub</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <h2 class="m-3">Login</h2>
+    <form class="container m-0" id="loginForm">
+        <input type="text" class="form-control mb-3" name="username" id="username" placeholder="Username">
+        <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Password">
+        <input type="button" class="btn btn-danger" value="Login">
+    </form>
+    
+    <script src="scripts/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
+
+    <script>
+    $("input[type='button']").click(function(event) {
+        for (let i = 0; i < $('#loginForm').length; i ++) {
+            if (!$('#loginForm')[i].checkValidity()) {
+                let temp = document.createElement('button');
+                $('#loginForm').append(temp);
+                temp.click();
+                temp.remove();
+                return false;
+            }
+        }
+
+        let dataString = `username=${$('#username').val()}&password=${$('#password').val()}`
+        $.ajax({
+            type: 'post',
+            url: 'php/login.php',
+            data: dataString,
+            success: function (data) {
+                if (data == "1") {
+                    window.location.replace("http://localhost/cia2-project/admin.html");
+                }
+            }
+        });
+    });
+    </script>
+</body>
+</html>

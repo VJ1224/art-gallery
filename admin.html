@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | ArtHub</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <input type="button" class="btn btn-danger m-3" value="Logout" id="logout">
+    <script src="scripts/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
+
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'php/authenticate.php',
+            data: '',
+            success: function (data) {
+                if (data === "0") {
+                    window.location.replace("http://localhost/cia2-project/login.html");
+                }
+            }
+        });
+
+        $("#logout").click(function() {
+            $.ajax({
+                type: 'get',
+                url: 'php/logout.php',
+                data: '',
+                success: function () {
+                    window.location.replace("http://localhost/cia2-project/login.html");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

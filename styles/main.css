@@ -40,11 +40,6 @@ body {
     border-color: transparent;
 }
 
-.btn-primary {
-    background-color: #364f6b;
-    border-color: #364f6b;
-}
-
 .spinner-border {
     position: relative;
     left: 50%;
