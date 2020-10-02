@@ -26,6 +26,34 @@
             </ul>
         </div>
     </nav>
+
+    <div class="jumbotron jumbotron-fluid mb-0">
+        <div class="container">
+          <h1 class="display-4">ArtHub</h1>
+          <p class="lead">A platform to connect collectors and enthusiasts with beautiful works of art.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <form class="m-3" id="subscribeForm">
+            <h4>Subscribe</h4>
+            <div class="row">
+                <div class="col">
+                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required />
+                </div>
+                <div class="col pl-0">
+                    <input class="form-control" id="email" name="email" placeholder="E-mail" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" title="example@xyz.com" required />
+                </div>
+            </div>
+
+            <div class="form-group form-check mt-3">
+                <input type="checkbox" class="form-check-input" id="consent" required>
+                <label class="form-check-label" for="consent">I agree to receive promotional emails</label>
+            </div>
+
+            <input type="button" class="btn btn-danger" value="Send"/>
+        </form>
+    </div>
       
     <script src="scripts/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -42,6 +70,40 @@
             else if (this.className.includes('active'))
                 $(this).removeClass('active');
         });
+
+        $('input[type="button"]').click(function(event) {
+            for (let i = 0; i < $('#subscribeForm').length; i ++) {
+                if (!$('#subscribeForm')[i].checkValidity()) {
+                    let temp = document.createElement('button');
+                    $('#subscribeForm').append(temp);
+                    temp.click();
+                    temp.remove();
+                    return false;
+                }
+            }
+
+            $('#subscribeForm').html(
+                `<div class="spinner-border text-danger m-auto" style="width: 8rem; height: 8rem;"></div>`
+            );
+
+            $.post("php/contact.php", {
+                name: $("#name").val(),
+                email: $("#email").val(),
+                subject: $("#subject").val(),
+                message: $("#message").val()
+            }, function () {});
+
+            setTimeout(function () {
+                $('#subscribeForm').html(
+                    `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                        Thank you for subscribing! We will reach out to you soon.
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>`
+                )
+            }, 2000);
+        })
     });
     </script>
 </body>

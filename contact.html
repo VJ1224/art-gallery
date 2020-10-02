@@ -33,24 +33,26 @@
         </div>
     </div>
 
-    <form class="m-3" id="contactForm">
-        <div class="row mb-3">
-            <div class="col">
-                <input class="form-control" id="name" name="name" placeholder="Name" type="text" required />
-            </div>
+    <div class="container">
+        <form class="m-3" id="contactForm">
+            <div class="row mb-3">
+                <div class="col">
+                    <input class="form-control" id="name" name="name" placeholder="Name" type="text" required />
+                </div>
 
-            <div class="col">
-                <input class="form-control" id="email" name="email" placeholder="E-mail" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+                <div class="col">
+                    <input class="form-control" id="email" name="email" placeholder="E-mail" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" title="example@xyz.com" required />
+                </div>
             </div>
-        </div>
-        
-        <input class="form-control mb-3" id="subject" name="subject" placeholder="Subject" type="text" required />
-        
-        <textarea class="form-control mb-3" id="message" name="message" placeholder="Message" rows="6"  style="resize:vertical;" required></textarea>
-        
-        <input type="button" class="btn btn-danger" value="Send"/>
-        <input type="reset" class="btn btn-secondary" value="Clear" />
-    </form>
+            
+            <input class="form-control mb-3" id="subject" name="subject" placeholder="Subject" type="text" required />
+            
+            <textarea class="form-control mb-3" id="message" name="message" placeholder="Message" rows="6"  style="resize:vertical;" required></textarea>
+            
+            <input type="button" class="btn btn-danger" value="Send"/>
+            <input type="reset" class="btn btn-secondary" value="Clear" />
+        </form>
+    </div>
       
     <script src="scripts/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
@@ -69,10 +71,18 @@
         });
         
         $("input[type='button']").click(function() {
-            let body = $('body').html();
+            for (let i = 0; i < $('#contactForm').length; i ++) {
+                if (!$('#contactForm')[i].checkValidity()) {
+                    let temp = document.createElement('button');
+                    $('#contactForm').append(temp);
+                    temp.click();
+                    temp.remove();
+                    return false;
+                }
+            }
 
-            $('body').html(
-                `<div class="spinner-border text-danger mx-auto" style="width: 8rem; height: 8rem; margin: auto;"></div>`
+            $('#contactForm').html(
+                `<div class="spinner-border text-danger m-auto" style="width: 8rem; height: 8rem;"></div>`
             );
 
             $.post("php/contact.php", {
@@ -83,8 +93,6 @@
             }, function () {});
 
             setTimeout(function () {
-                $('body').html(body);
-                
                 $('#contactForm').html(
                     `<h6 class="m-3">
                         Thank you for getting in touch with us!
@@ -100,7 +108,7 @@
                         Phone: +91 9833396142
                     </p>`
                 )
-            }, 2500);
+            }, 2000);
         });
     });
     </script>

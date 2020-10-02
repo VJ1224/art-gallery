@@ -15,9 +15,9 @@ $sql = "SELECT aname, artist, price FROM artwork WHERE atype='".$type."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
-    echo "<div class='card-deck'>";
-    while($row = $result->fetch_assoc()) {
-        echo    "<div class='card mb-3 shadow' style='max-width: 18rem;'>
+    echo "<div class='card-columns'>";
+    while ($row = $result->fetch_assoc()) {
+        echo    "<div class='card mb-3 shadow'>
                     <img src='images/art/".$row["aname"].".jpg' class='card-img-top img-fluid'>
                     <div class='card-body'>
                         <h5 class='card-title'>".$row["aname"]."</h5>
@@ -28,5 +28,6 @@ if ($result->num_rows > 0) {
     }
     echo "</div>";
 }
+
 $conn->close();
 ?>
