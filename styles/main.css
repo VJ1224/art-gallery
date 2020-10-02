@@ -46,9 +46,12 @@ body {
 }
 
 .spinner-border {
-    display: block;
-    position: fixed;
-    z-index: 1031;
-    top: calc(50% - (5rem / 2));
-    right: calc(50% - (5rem / 2));
+    position: relative;
+    left: 50%;
+    right: 50%;
+    top: 50%;
+    bottom: 50%;
+    margin: -8em;
+    width: 8rem; 
+    height: 8rem;
 }

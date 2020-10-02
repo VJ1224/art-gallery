@@ -70,40 +70,42 @@
             else if (this.className.includes('active'))
                 $(this).removeClass('active');
         });
+    });
 
-        $('input[type="button"]').click(function(event) {
-            for (let i = 0; i < $('#subscribeForm').length; i ++) {
-                if (!$('#subscribeForm')[i].checkValidity()) {
-                    let temp = document.createElement('button');
-                    $('#subscribeForm').append(temp);
-                    temp.click();
-                    temp.remove();
-                    return false;
-                }
+    $('input[type="button"]').click(function(event) {
+        for (let i = 0; i < $('#subscribeForm').length; i ++) {
+            if (!$('#subscribeForm')[i].checkValidity()) {
+                let temp = document.createElement('button');
+                $('#subscribeForm').append(temp);
+                temp.click();
+                temp.remove();
+                return false;
             }
+        }
+        
+        let dataString = `name=${$('#name').val()}&email=${$('#email').val()}`
 
+        $('#subscribeForm').html(
+            `<div class="spinner-border text-danger"></div>`
+        );
+
+        $.ajax({
+            type: 'post',
+            url: 'php/subscribe.php',
+            data: dataString,
+            success: function () {}
+        });
+
+        setTimeout(function () {
             $('#subscribeForm').html(
-                `<div class="spinner-border text-danger m-auto" style="width: 8rem; height: 8rem;"></div>`
-            );
-
-            $.post("php/contact.php", {
-                name: $("#name").val(),
-                email: $("#email").val(),
-                subject: $("#subject").val(),
-                message: $("#message").val()
-            }, function () {});
-
-            setTimeout(function () {
-                $('#subscribeForm').html(
-                    `<div class="alert alert-success alert-dismissible fade show" role="alert">
-                        Thank you for subscribing! We will reach out to you soon.
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>`
-                )
-            }, 2000);
-        })
+                `<div class="alert alert-success alert-dismissible fade show" role="alert">
+                    Thank you for subscribing! We will reach out to you soon.
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>`
+            )
+        }, 2000);
     });
     </script>
 </body>
