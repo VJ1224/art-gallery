@@ -7,11 +7,26 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/main.css">
 </head>
+
+<style>
+    #loginForm {
+        background-color: #a6e3e9;
+        border-radius: 25px;
+    }
+</style>
 <body>
-    <h2 class="m-3">Login</h2>
-    <form class="container m-0" id="loginForm">
-        <input type="text" class="form-control mb-3" name="username" id="username" placeholder="Username">
-        <input type="password" class="form-control mb-3" name="password" id="password" placeholder="Password">
+    <form class="container mt-5 p-5 shadow" id="loginForm" novalidate>
+        <h2>Login</h2>
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" class="form-control" name="username" id="username" placeholder="Username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
+        </div>
+
         <input type="button" class="btn btn-danger" value="Login">
     </form>
     
@@ -21,14 +36,17 @@
 
     <script>
     $("input[type='button']").click(function(event) {
-        for (let i = 0; i < $('#loginForm').length; i ++) {
-            if (!$('#loginForm')[i].checkValidity()) {
-                let temp = document.createElement('button');
-                $('#loginForm').append(temp);
-                temp.click();
-                temp.remove();
+        const validate = () => {
+            $('#loginForm').addClass('was-validated');
+            if (!$('#loginForm')[0].checkValidity()) {
                 return false;
             }
+
+            return true;
+        }
+
+        if (!validate()) {
+            return;
         }
 
         let dataString = `username=${$('#username').val()}&password=${$('#password').val()}`
