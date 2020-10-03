@@ -15,8 +15,8 @@
     }
 </style>
 <body>
-    <form class="container mt-5 p-5 shadow" id="loginForm" novalidate>
-        <h2>Login</h2>
+    <form class="container mt-5 p-5 shadow" id="loginForm">
+        <h2 id="title">Login</h2>
         <div class="form-group">
             <label for="username">Username</label>
             <input type="text" class="form-control" name="username" id="username" required>
@@ -36,19 +36,6 @@
 
     <script>
     $("input[type='button']").click(function(event) {
-        const validate = () => {
-            $('#loginForm').addClass('was-validated');
-            if (!$('#loginForm')[0].checkValidity()) {
-                return false;
-            }
-
-            return true;
-        }
-
-        if (!validate()) {
-            return;
-        }
-
         let dataString = `username=${$('#username').val()}&password=${$('#password').val()}`
         $.ajax({
             type: 'post',
@@ -57,6 +44,10 @@
             success: function (data) {
                 if (data == "1") {
                     window.location.replace("http://localhost/cia2-project/admin.html");
+                } else {
+                    $('#title').after(`<div class="alert alert-danger mt-3" role="alert">
+                                            Invalid username/password.
+                                            </div`)
                 }
             }
         });
