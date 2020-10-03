@@ -12,7 +12,16 @@ if ($conn->connect_error) {
 $user = (isset($_POST['username']) ? $_POST['username']: '');
 $pass = strtoupper(hash('sha256', (isset($_POST['password']) ? $_POST['password']: '')));
 
-echo $pass;
+$stmt = $conn->prepare("SELECT username FROM users WHERE username=?");
+
+$stmt->bind_param("s", $user);
+$stmt->execute();
+$stmt->store_result();
+
+if($stmt->num_rows > 0) {
+  echo "0";
+  die();
+}
 
 $stmt = $conn->prepare("INSERT INTO users VALUES (?,?)");
 

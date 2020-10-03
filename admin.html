@@ -36,7 +36,7 @@
                 
                 <div class="form-group">
                     <label for="price">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" required />
+                    <input type="number" class="form-control" id="price" name="price" min="0" required />
                 </div>
         
                 <div class="form-group">
@@ -62,11 +62,18 @@
                 </button>
             </div>
 
+            <div class="alert alert-danger alert-dismissible m-3" id="user-exists" role="alert">
+                Username already exists!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
             <form class="container mt-5 mb-5 p-5 shadow needs-validation" id="registerForm" novalidate>
                 <h2 id="title">Register</h2>
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" pattern="^[a-z0-9]{3,15}$" required>
+                    <input type="text" class="form-control" name="username" id="username" pattern="[a-z0-9]{3,15}" required>
                     <div class="invalid-feedback">
                         Only letters and numbers. Must be between 3 and 16 characters.
                     </div>
@@ -109,6 +116,7 @@
         $(document).ready(function () {
             $('#addedArt').hide();
             $('#registered').hide();
+            $('#user-exists').hide();
         });
 
         $('#registerButton').click(function(event) {
@@ -144,9 +152,14 @@
                 type: 'post',
                 url: 'php/register.php',
                 data: dataString,
-                success: function () {
+                success: function (data) {
+                    if (data === "0") {
+                        $('#user-exists').show();
+                    } else {
+                        $('#registered').show();
+                    }
+
                     $('#registerForm')[0].reset();
-                    $('#registered').show();
                     $('#registerForm').removeClass('was-validated');
                     $('#password2').removeClass('is-valid');
                 }
