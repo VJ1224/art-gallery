@@ -36,12 +36,12 @@
     <form class="container needs-validation mt-3 mb-3" id="contactForm" novalidate>
         <div class="form-group">
             <label for="name">Name</label>
-            <input class="form-control" id="name" name="name" placeholder="John Doe" type="text" required />
+            <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required />
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
-            <input class="form-control" id="email" name="email" placeholder="johndoe@example.com" type="text" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+            <input type="text" class="form-control" id="email" name="email" placeholder="johndoe@example.com" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
             <div class="invalid-feedback">
                 Enter a valid email address.
             </div>
@@ -49,12 +49,12 @@
         
         <div class="form-group">
             <label for="subject">Subject</label>
-            <input class="form-control" id="subject" name="subject" placeholder="Subject" type="text" required />
+            <input type="text" class="form-control" id="subject" name="subject" required />
         </div>
 
         <div class="form-group">
             <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" placeholder="Message" rows="6"  style="resize:vertical;" required></textarea>
+            <textarea class="form-control" id="message" name="message" rows="6"  style="resize:vertical;" required></textarea>
         </div>
         
         <input type="button" class="btn btn-danger" value="Send"/>
