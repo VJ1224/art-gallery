@@ -34,7 +34,7 @@
         </div>
     </div>
 
-    <form class="container mt-3 mb-3" id="subscribeForm" novalidate>
+    <form class="container mt-5 mb-5 p-5 shadow needs-validation" id="subscribeForm" novalidate>
         <h4>Subscribe</h4>
         <div class="form-group">
             <label for="name">Name</label>
@@ -93,6 +93,12 @@
         $('#subscribeForm').html(
             `<div class="spinner-border text-danger"></div>`
         );
+
+        $('#subscribeForm').removeClass('container');
+        $('#subscribeForm').removeClass('shadow');
+        $('#subscribeForm').removeClass('p-5');
+        $('#subscribeForm').addClass('ml-5');
+        $('#subscribeForm').addClass('mr-5');
 
         $.ajax({
             type: 'post',

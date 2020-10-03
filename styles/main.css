@@ -50,3 +50,8 @@ body {
     width: 8rem; 
     height: 8rem;
 }
+
+form.container {
+    background-color: #a6e3e9;
+    border-radius: 25px;
+}
