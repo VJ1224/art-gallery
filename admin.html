@@ -8,43 +8,96 @@
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <form class="container needs-validation mt-3 mb-3" id="addArtForm" novalidate>
-        <div class="form-group">
-            <label for="aname">Art Name</label>
-            <input type="text" class="form-control" id="aname" name="aname" required />
-        </div>
-
-        <div class="form-group">
-            <label for="artist">Artist</label>
-            <input type="text" class="form-control" id="artist" name="artist" required />
-        </div>
-        
-        <div class="form-group">
-            <label for="price">Price</label>
-            <input type="number" class="form-control" id="price" name="price" required />
-        </div>
-
-        <div class="form-group">
-            <label for="atype">Art Type</label>
-
-            <select class="custom-select" name="atype" id="atype">
-                <option value="painting" selected>Painting</option>
-                <option value="sculpture">Sculpture</option>
-                <option value="photo">Photo</option>
-                <option value="digital">Digital</option>
-            </select>
-        </div>
-        
-        <input type="button" class="btn btn-danger" value="Add" id="addArt" />
-        <input type="reset" class="btn btn-secondary" value="Clear"/>
-    </form>
-
-    <div class="alert alert-success alert-dismissible m-3" id="addedArt" role="alert">
-        Artwork added successfully!
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="nav nav-tabs nav-fill">
+        <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#register">Register User</a>
+        <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArt">Add Artwork</a>
     </div>
+
+    <div class="tab-content ml-5 mt-3 mr-5">
+        <div class="tab-pane fade" id="addArt">
+            <div class="alert alert-success alert-dismissible m-3" id="addedArt" role="alert">
+                Artwork added successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form class="container needs-validation mt-5 mb-5 shadow p-5" id="addArtForm" novalidate>
+                <h2 id="title">Add Artwork</h2>
+                <div class="form-group">
+                    <label for="aname">Art Name</label>
+                    <input type="text" class="form-control" id="aname" name="aname" required />
+                </div>
+        
+                <div class="form-group">
+                    <label for="artist">Artist</label>
+                    <input type="text" class="form-control" id="artist" name="artist" required />
+                </div>
+                
+                <div class="form-group">
+                    <label for="price">Price</label>
+                    <input type="number" class="form-control" id="price" name="price" required />
+                </div>
+        
+                <div class="form-group">
+                    <label for="atype">Art Type</label>
+        
+                    <select class="custom-select" name="atype" id="atype">
+                        <option value="painting" selected>Painting</option>
+                        <option value="sculpture">Sculpture</option>
+                        <option value="photo">Photo</option>
+                        <option value="digital">Digital</option>
+                    </select>
+                </div>
+                
+                <input type="button" class="btn btn-danger" value="Add" id="addArtButton" />
+                <input type="reset" class="btn btn-secondary" value="Clear"/>
+            </form>
+        </div>
+        <div class="tab-pane fade" id="register">
+            <div class="alert alert-success alert-dismissible m-3" id="registered" role="alert">
+                User registered successfully!
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+            <form class="container mt-5 mb-5 p-5 shadow needs-validation" id="registerForm" novalidate>
+                <h2 id="title">Register</h2>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" pattern="^[a-z0-9]{3,15}$" required>
+                    <div class="invalid-feedback">
+                        Only letters and numbers. Must be between 3 and 16 characters.
+                    </div>
+                </div>
+        
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password1" pattern="{8,}$" required>
+                    <div class="invalid-feedback">
+                        Minimum eight characters.
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password" class="form-control" name="password" id="password2" required>
+                    <div class="invalid-feedback">
+                        Passwords do not match.
+                    </div>
+                </div>
+        
+                <div class="form-check form-group">
+                    <input class="form-check-input" type="checkbox" value="" id="showPassword">
+                    <label class="form-check-label" for="showPassword">Show Password</label>
+                </div>
+        
+                <input type="button" class="btn btn-danger" value="Login" id="registerButton">
+            </form>
+        </div>
+    </div>
+
 
     <input type="button" class="btn btn-danger m-3" value="Logout" id="logout">
     
@@ -55,9 +108,52 @@
     <script>
         $(document).ready(function () {
             $('#addedArt').hide();
+            $('#registered').hide();
         });
 
-        $("#addArt").click(function(event) {
+        $('#registerButton').click(function(event) {
+            const validate = () => {
+                let valid = true;
+
+                $('#registerForm').addClass('was-validated');
+                if (!$('#registerForm')[0].checkValidity()) {
+                    valid = false;
+                }
+
+                if ($('#password1').val() !== $('#password2').val()) {
+                    $('#password2').removeClass('is-valid');
+                    $('#password2').addClass('is-invalid');
+                    $('#password2')[0].setCustomValidity('is-invalid');
+                    valid = false;
+                } else {
+                    $('#password2').removeClass('is-invalid');
+                    $('#password2').addClass('is-valid');
+                    $('#password2')[0].setCustomValidity('');
+                }
+
+                return valid;
+            }
+
+            if (!validate()) {
+                return;
+            }
+            
+            let dataString = `username=${$('#username').val()}&password=${$('#password1').val()}`
+
+            $.ajax({
+                type: 'post',
+                url: 'php/register.php',
+                data: dataString,
+                success: function () {
+                    $('#registerForm')[0].reset();
+                    $('#registered').show();
+                    $('#registerForm').removeClass('was-validated');
+                    $('#password2').removeClass('is-valid');
+                }
+            });
+        });
+
+        $("#addArtButton").click(function(event) {
             const validate = () => {
                 $('#addArtForm').addClass('was-validated');
                 if (!$('#addArtForm')[0].checkValidity()) {
@@ -105,6 +201,16 @@
                     window.location.replace("http://localhost/cia2-project/login.html");
                 }
             });
+        });
+
+        $('#showPassword').click(function() {
+            if('password' == $('#password1').attr('type')){
+                $('#password1').prop('type', 'text');
+                $('#password2').prop('type', 'text');
+            } else {
+                $('#password1').prop('type', 'password');
+                $('#password2').prop('type', 'password');
+            }
         });
     </script>
 </body>
