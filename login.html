@@ -27,6 +27,11 @@
             <input type="password" class="form-control" name="password" id="password" required>
         </div>
 
+        <div class="form-check form-group">
+            <input class="form-check-input" type="checkbox" value="" id="showPassword">
+            <label class="form-check-label" for="showPassword">Show Password</label>
+        </div>
+
         <input type="button" class="btn btn-danger" value="Login">
     </form>
     
@@ -51,6 +56,14 @@
                 }
             }
         });
+    });
+
+    $('#showPassword').click(function() {
+        if('password' == $('#password').attr('type')){
+            $('#password').prop('type', 'text');
+        } else {
+            $('#password').prop('type', 'password');
+        }
     });
     </script>
 </body>
