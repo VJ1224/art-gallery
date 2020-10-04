@@ -52,6 +52,10 @@ body {
 }
 
 form.container {
-    background-color: #a6e3e9;
+    background-color: #3bb895;
     border-radius: 25px;
+}
+
+form > #title {
+    color: #ffffff;;
 }
