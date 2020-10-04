@@ -23,6 +23,7 @@ $stmt->store_result();
 if($stmt->num_rows > 0) {
     echo "1";
     $_SESSION["loggedin"] = true;
+    $_SESSION["username"] = $user;
 } else {
     echo "0";
     $_SESSION["loggedin"] = false;

@@ -29,15 +29,21 @@
         </div>
     </nav>
 
+    <div class="jumbotron jumbotron-fluid mb-0" style="padding-bottom: 1rem;">
+        <div class="container">
+          <h1 class="display-4" id="greeting"></h1>
+        </div>
+    </div>
+
     <div class="nav nav-tabs nav-fill">
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArt">Add Artwork</a>
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewSubs">View Subscriptions</a>
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#register">Register User</a>
     </div>
 
-    <div class="tab-content ml-5 mt-3 mr-5">
+    <div class="tab-content mx-5 mt-3">
         <div class="tab-pane fade" id="addArt">
-            <form class="container needs-validation mt-5 mb-5 shadow p-5" id="addArtForm" method="POST" enctype="multipart/form-data" novalidate>
+            <form class="container needs-validation my-5 shadow p-5" id="addArtForm" method="POST" enctype="multipart/form-data" novalidate>
                 <h2 id="title">Add Artwork</h2>
                 <div class="form-group">
                     <label for="aname">Art Name</label>
@@ -141,14 +147,15 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
 
     <script>
-        $.ajax({
-            type: 'get',
-            url: 'php/authenticate.php',
-            data: '',
-            success: function (response) {
-                if (response === "0") {
-                    window.location.replace("http://localhost/cia2-project/login.html");
-                }
+        function updateSubs() {
+            $.get('php/subscriptions.php', function (data) {
+                $('#viewSubs').html(data);
+            });
+        }
+
+        $.get('php/authenticate.php', function (data) {
+            if (data === "0") {
+                window.location.replace("http://localhost/cia2-project/login.html");
             }
         });
 
@@ -167,15 +174,11 @@
             $('#registered').hide();
             $('#user-exists').hide();
 
-            $.ajax({
-                type: 'get',
-                url: 'php/subscriptions.php',
-                data: '',
-                success: function (data) {
-                    $('#viewSubs').html(data);
-                }
-            });
+            updateSubs();
 
+            $.get('php/username.php', function (data) {
+                $('#greeting').html(data);
+            });
             
             $('#addArt').tab('show');
             $('a[href="#addArt"').addClass('active');

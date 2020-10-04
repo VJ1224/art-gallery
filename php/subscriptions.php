@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo "</tbody></table>";
+echo "</tbody></table><input type='button' class='btn btn-danger' value='Update' onclick='updateSubs()'>";
 
 $conn->close();
 ?>
