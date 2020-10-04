@@ -79,6 +79,9 @@
         $.get('php/gallery.php?type=digital', function (data, status) {
             $('#digital').html(data);
         });
+
+        $('#paintings').tab('show');
+        $('a[href="#paintings"').addClass('active');
     });
     </script>
 </body>
