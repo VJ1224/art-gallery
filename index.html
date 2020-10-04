@@ -34,8 +34,10 @@
         </div>
     </div>
 
-    <form class="container mt-5 mb-5 p-5 shadow needs-validation" id="subscribeForm" novalidate>
-        <h4 id="title">Subscribe</h4>
+    <div id="imageCarousel" class="carousel slide m-5" data-ride="carousel"></div>
+
+    <form class="container my-5 p-5 shadow needs-validation" id="subscribeForm" novalidate>
+        <h2 id="title">Subscribe</h2>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required />
@@ -71,6 +73,10 @@
                 $(this).addClass('active');
             else if (this.className.includes('active'))
                 $(this).removeClass('active');
+        });
+
+        $.get('php/carousel.php', function (data) {
+            $('#imageCarousel').html(data);
         });
     });
 
