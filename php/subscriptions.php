@@ -1,4 +1,13 @@
-<?php
+<?php    
+ob_start();
+include('authenticate.php');
+$auth = ob_get_contents();
+ob_end_clean();
+
+if ($auth == "0") {
+  die();
+}
+
 $servername = "localhost";
 $username = "root";
 $password = "";
@@ -11,11 +20,11 @@ if ($conn->connect_error) {
 
 $sql = "SELECT * FROM subscriptions";
 $result = $conn->query($sql);
-$rows = 1;
+$row_no = 1;
 
 echo "<h2 id='title'>Subscriptions</h2>
     <table class='table table-striped table-hover'>
-    <caption>List of subscriptions.</caption>
+    <caption>List of subscriptions. Total: ".$result->num_rows."</caption>
     <thead class='thead-dark'>
         <tr>
         <th scope='col'>#</th>
@@ -29,11 +38,11 @@ echo "<h2 id='title'>Subscriptions</h2>
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
-        <th scope='row'>".$rows."</th>
+        <th scope='row'>".$row_no."</th>
         <td>".$row["fname"]."</td>
         <td>".$row["email"]."</td>
       </tr>";
-      $rows++;
+      $row_no++;
     }
 }
 
