@@ -43,7 +43,7 @@
                 </button>
             </div>
 
-            <form class="container needs-validation mt-5 mb-5 shadow p-5" id="addArtForm" novalidate>
+            <form class="container needs-validation mt-5 mb-5 shadow p-5" id="addArtForm" method="POST" enctype="multipart/form-data" novalidate>
                 <h2 id="title">Add Artwork</h2>
                 <div class="form-group">
                     <label for="aname">Art Name</label>
@@ -69,6 +69,14 @@
                         <option value="photo">Photo</option>
                         <option value="digital">Digital</option>
                     </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="image">Artwork image</label>
+                    <input type="file" class="form-control-file" name="image" id="image" accept=".jpg" required>
+                    <div class="invalid-feedback">
+                        Image (.jpg) file is required.
+                    </div>
                 </div>
                 
                 <input type="button" class="btn btn-danger" value="Add" id="addArtButton" />
@@ -238,6 +246,12 @@
             
             let dataString = `aname=${$('#aname').val()}&artist=${$('#artist').val()}&price=${$('#price').val()}&atype=${$('#atype').val()}`
 
+            let file = $('#image').prop('files')[0];
+            let file_name = $('#aname').val() + '.jpg';
+
+            let form_data = new FormData();    
+            form_data.append('image', file, file_name);
+
             $.ajax({
                 type: 'post',
                 url: 'php/addArtwork.php',
@@ -247,6 +261,16 @@
                     $('#addedArt').show();
                     $('#addArtForm').removeClass('was-validated');
                 }
+            });
+
+            $.ajax({
+                type: 'post',
+                url: 'php/upload.php',
+                processData: false,                       
+                cache: false,
+                contentType: false,
+                data: form_data,
+                success: function () {}
             });
         });
 
