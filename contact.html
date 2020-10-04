@@ -33,7 +33,8 @@
         </div>
     </div>
 
-    <form class="container needs-validation p-5 shadow mt-5 mb-5" id="contactForm" novalidate>
+    <form class="container needs-validation p-5 shadow my-5" id="contactForm" novalidate>
+        <h2 id="title">Send a Mail</h2>
         <div class="form-group">
             <label for="name">Name</label>
             <input type="text" class="form-control" id="name" name="name" placeholder="John Doe" required />
@@ -101,8 +102,7 @@
         $('#contactForm').removeClass('container');
         $('#contactForm').removeClass('shadow');
         $('#contactForm').removeClass('p-5');
-        $('#contactForm').addClass('ml-5');
-        $('#contactForm').addClass('mr-5');
+        $('#contactForm').addClass('mx-5');
 
         $.ajax({
             type: 'post',

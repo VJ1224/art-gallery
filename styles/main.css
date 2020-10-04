@@ -13,7 +13,7 @@ body {
 }
 
 .nav-tabs {
-    background-color: #b83b5e;
+    background-color: #bf4e6e;
 }
 
 .nav-tabs a {
@@ -30,13 +30,13 @@ body {
 
 .nav-tabs .nav-link.active:hover {
     color: #ffffff;
-    background-color: #a53554;
+    background-color: #ab4663;
     border-color: transparent transparent #393e46;
     border-bottom: 5px solid;
 }
 
 .nav-tabs .nav-link:hover {
-    background-color: #a53554;
+    background-color: #ab4663;
     border-color: transparent;
 }
 
