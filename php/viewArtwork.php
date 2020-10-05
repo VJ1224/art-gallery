@@ -22,9 +22,9 @@ $sort = $_GET['sort'];
 $order = $_GET['order'];
 
 if ($sort == 'default') {
-  $sql = "SELECT * FROM artwork";
+  $sql = "SELECT FORMAT(price, 0) as 'value', aname, atype, artist FROM artwork";
 } else {
-  $sql = "SELECT * FROM artwork ORDER BY ".$sort." ".$order;
+  $sql = "SELECT FORMAT(price, 0) as 'value', aname, atype, artist FROM artwork ORDER BY ".$sort." ".$order;
 }
 
 $result = $conn->query($sql);
@@ -51,7 +51,7 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
-        <td>".$row["price"]."</td>
+        <td>₹".$row["value"]."</td>
         <td>".$row["atype"]."</td>
         <td><input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"],"`,`".$row["artist"]."`)' value='Delete'/></td>
       </tr>";

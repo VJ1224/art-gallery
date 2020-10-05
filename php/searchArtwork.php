@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $search = $_GET['search'];
 $row_no = 1;
 
-$stmt = $conn->prepare("SELECT * FROM artwork WHERE aname LIKE '%".$search."%'");
+$stmt = $conn->prepare("SELECT FORMAT(price, 0) as 'price', aname, atype, artist FROM artwork WHERE aname LIKE '%".$search."%'");
 $stmt->execute();
 $result = $stmt->get_result();
 
@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
-        <td>".$row["price"]."</td>
+        <td>₹".$row["price"]."</td>
         <td>".$row["atype"]."</td>
         <td><input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"],"`,`".$row["artist"]."`)' value='Delete'/></td>
       </tr>";

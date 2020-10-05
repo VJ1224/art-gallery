@@ -20,7 +20,7 @@ if ($conn->connect_error) {
 
 $group = $_GET['group'];
 
-$sql = "SELECT SUM(price) AS 'value', artist, atype FROM artwork GROUP BY ".$group;
+$sql = "SELECT FORMAT(SUM(price),0) AS 'value', artist, atype FROM artwork GROUP BY ".$group;
 
 $result = $conn->query($sql);
 $row_no = 1;
@@ -45,7 +45,7 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>";
         if ($group == 'artist') echo "<td>".$row["artist"]."</td>";
         else echo "<td>".$row["atype"]."</td>";
-        echo "<td>".$row["value"]."</td>
+        echo "<td>₹".$row["value"]."</td>
       </tr>";
       $row_no++;
     }

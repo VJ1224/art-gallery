@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 
 $type = $_GET['type'];
 
-$sql = "SELECT aname, artist, price FROM artwork WHERE atype='".$type."'";
+$sql = "SELECT FORMAT(price, 0) as 'price', aname, artist FROM artwork WHERE atype='".$type."'";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
