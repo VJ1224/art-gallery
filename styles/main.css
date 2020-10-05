@@ -59,3 +59,7 @@ form.container {
 form > #title {
     color: #ffffff;;
 }
+
+#imageCarousel > div {
+    border-radius: 25px;
+}
