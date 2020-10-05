@@ -155,7 +155,7 @@
             </div>
             <div class='row'>
                 <div class='form-group mx-3'>
-                    <select class='form-control' id='sortArt'>
+                    <select class='form-control' id='sortArt' onchange='groupOrSort()'>
                         <option value='aname'>Name</option>
                         <option value='artist'>Artist</option>
                         <option value='price'>Price</option>
@@ -170,6 +170,9 @@
                 </div>
                 <div class='form-group ml-3'>
                     <input class='btn btn-danger' type='button' onclick='sortArt()' value='Sort'/>
+                </div>
+                <div class='form-group ml-3'>
+                    <input class='btn btn-danger' id="groupArt" type='button' onclick='groupArt()' value='Group' disabled/>
                 </div>
             </div>
             <div id="artTable"></div>
@@ -201,6 +204,23 @@
             $.get('php/viewArtwork.php?sort='+sort+'&order='+order, function (data) {
                 $('#artTable').html(data);
             });
+        }
+
+        function groupArt() {
+            let group = $('#sortArt').val();
+            $.get('php/groupArtwork.php?group='+group, function (data) {
+                $('#artTable').html(data);
+            });
+        }
+
+        function groupOrSort() {
+            let column = $('#sortArt').val();
+
+            if (column === 'aname' || column === 'price') {
+                $('#groupArt').prop('disabled', true);
+            } else {
+                $('#groupArt').prop('disabled', false);
+            }
         }
 
         function deleteArt(aname, artist) {
