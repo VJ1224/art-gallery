@@ -90,6 +90,7 @@
                 <input type="reset" class="btn btn-secondary" value="Clear"/>
             </form>
         </div>
+
         <div class="tab-pane fade" id="register">
             <form class="container mt-5 mb-5 p-5 shadow needs-validation" id="registerForm" novalidate>
                 <h2 id="title">Register</h2>
@@ -97,7 +98,7 @@
                     <label for="username">Username</label>
                     <input type="text" class="form-control" name="username" id="username" pattern="[a-z0-9]{3,15}" required>
                     <div class="invalid-feedback">
-                        Only letters and numbers. Must be between 3 and 16 characters.
+                        Only letters and numbers. Must be between 3 and 15 characters.
                     </div>
                 </div>
         
@@ -139,10 +140,12 @@
                 <input type="button" class="btn btn-danger" value="Login" id="registerButton">
             </form>
         </div>
+
         <div class="tab-pane fade" id="viewSubs">
             <h2 id='title'>Subscriptions</h2>
             <div id="subTable"></div>
         </div>
+
         <div class="tab-pane fade" id="viewArt">
             <h2 id='title'>Artwork</h2>
             <div class="row">
@@ -180,182 +183,8 @@
 
     <script src="scripts/jquery.js"></script>
     <script src="scripts/script.js"></script>
+    <script src="scripts/admin.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
-
-    <script>
-        function updateSubs() {
-            $.get('php/subscriptions.php', function (data) {
-                $('#subTable').html(data);
-            });
-        }
-
-        function updateArt() {
-            $.get('php/viewArtwork.php?sort=default&order=ASC', function (data) {
-                $('#artTable').html(data);
-            });
-        }
-
-        function sortArt() {
-            let sort = $('#sortArt').val();
-            let order = $('#orderArt').val();
-            $.get('php/viewArtwork.php?sort='+sort+'&order='+order, function (data) {
-                $('#artTable').html(data);
-            });
-        }
-
-        function groupArt() {
-            let group = $('#sortArt').val();
-            $.get('php/groupArtwork.php?group='+group, function (data) {
-                $('#artTable').html(data);
-            });
-        }
-
-        function disableButtons() {
-            let column = $('#sortArt').val();
-
-            if (column === 'price') {
-                $('#searchArt').prop('disabled', true);
-            } else {
-                $('#searchArt').prop('disabled', false);
-            }
-
-            if (column === 'aname' || column === 'price') {
-                $('#groupArt').prop('disabled', true);
-            } else {
-                $('#groupArt').prop('disabled', false);
-            }
-        }
-
-        function deleteArt(aname, artist) {
-            let dataString = `aname=${aname}&artist=${artist}`;
-            $.post('php/deleteArtwork.php', dataString, function () {
-                updateArt();
-            });
-        }
-
-        function searchArt() {
-            let query = $('#searchVal').val();
-            let category = $('#sortArt').val();
-            $.get('php/searchArtwork.php?search='+query+'&category='+category, function (data) {
-                $('#artTable').html(data);
-            })
-        }
-
-        function authorise() {
-            $.get('php/authenticate.php', function (data) {
-                if (data === "0") {
-                    window.location.replace("http://localhost/cia2-project/login.html");
-                }
-            });
-
-            $.get('php/username.php', function (data) {
-                $('#greeting').html(data);
-            });
-        }
-
-        $(document).ready(function () {
-            authorise();
-            updateSubs();
-            updateArt();
-
-            $('#addedArt').hide();
-            $('#registered').hide();
-            $('#user-exists').hide();
-
-            
-            $('#viewArt').tab('show');
-            $('a[href="#viewArt"').addClass('active');
-        });
-
-        $('#registerButton').click(function(event) {
-            const valid = () => {
-                let valid = true;
-
-                $('#registerForm').addClass('was-validated');
-                if (!$('#registerForm')[0].checkValidity()) {
-                    valid = false;
-                }
-
-                if ($('#password1').val() !== $('#password2').val()) {
-                    $('#password2').removeClass('is-valid');
-                    $('#password2').addClass('is-invalid');
-                    $('#password2')[0].setCustomValidity('is-invalid');
-                    valid = false;
-                } else {
-                    $('#password2').removeClass('is-invalid');
-                    $('#password2').addClass('is-valid');
-                    $('#password2')[0].setCustomValidity('');
-                }
-
-                return valid;
-            }
-
-            if (!valid()) {
-                return;
-            }
-            
-            let dataString = `username=${$('#username').val()}&password=${$('#password1').val()}`;
-
-            $.post('php/register.php', dataString, function (data) {
-                if (data === "0") {
-                    $('#user-exists').show();
-                } else {
-                    $('#registered').show();
-                }
-
-                $('#registerForm')[0].reset();
-                $('#registerForm').removeClass('was-validated');
-                $('#password2').removeClass('is-valid');
-            });
-        });
-
-        $("#addArtButton").click(function(event) {
-            validate();
-
-            if (!validate()) {
-                return;
-            }
-            
-            let dataString = `aname=${$('#aname').val()}&artist=${$('#artist').val()}&price=${$('#price').val()}&atype=${$('#atype').val()}`
-
-            let file = $('#image').prop('files')[0];
-            let file_name = $('#aname').val() + '.jpg';
-
-            let form_data = new FormData();    
-            form_data.append('image', file, file_name);
-
-            $.post('php/addArtwork.php', dataString, function () {
-                $('#addArtForm')[0].reset();
-                $('#addedArt').show();
-                $('#addArtForm').removeClass('was-validated');
-            });
-
-            $.ajax({
-                type: 'post',
-                url: 'php/upload.php',
-                processData: false,                       
-                cache: false,
-                contentType: false,
-                data: form_data
-            });
-        });
-
-        $("#logout").click(function() {
-            $.get('php/logout.php', function () {
-                window.location.replace("http://localhost/cia2-project/login.html");
-            });
-        });
-
-        $('#showPassword').click(function() {
-            if('password' == $('#password1').attr('type')){
-                $('#password1').prop('type', 'text');
-                $('#password2').prop('type', 'text');
-            } else {
-                $('#password1').prop('type', 'password');
-                $('#password2').prop('type', 'password');
-            }
-        });
-    </script>
 </body>
 </html>
