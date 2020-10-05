@@ -106,12 +106,7 @@
         $('#subscribeForm').addClass('ml-5');
         $('#subscribeForm').addClass('mr-5');
 
-        $.ajax({
-            type: 'post',
-            url: 'php/subscribe.php',
-            data: dataString,
-            success: function () {}
-        });
+        $.post('php/subscribe.php', dataString);
 
         setTimeout(function () {
             $('#subscribeForm').html(

@@ -55,18 +55,14 @@
     <script>
     $("input[type='button']").click(function(event) {
         let dataString = `username=${$('#username').val()}&password=${$('#password').val()}`
-        $.ajax({
-            type: 'post',
-            url: 'php/login.php',
-            data: dataString,
-            success: function (data) {
-                if (data == "1") {
-                    window.location.replace("http://localhost/cia2-project/admin.html");
-                } else {
-                    $('#title').after(`<div class="alert alert-danger mt-3" role="alert">
-                                            Invalid username/password.
-                                            </div`)
-                }
+
+        $.post('php/login.php', dataString, function (data) {
+            if (data == "1") {
+                window.location.replace("http://localhost/cia2-project/admin.html");
+            } else {
+                $('#title').after(`<div class="alert alert-danger mt-3" role="alert">
+                                        Invalid username/password.
+                                        </div`)
             }
         });
     });

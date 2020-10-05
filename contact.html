@@ -104,12 +104,7 @@
         $('#contactForm').removeClass('p-5');
         $('#contactForm').addClass('mx-5');
 
-        $.ajax({
-            type: 'post',
-            url: 'php/contact.php',
-            data: dataString,
-            success: function () {}
-        });
+        $.post('php/contact.php', dataString);
 
         setTimeout(function () {
             $('#contactForm').html(

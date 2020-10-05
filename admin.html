@@ -141,7 +141,7 @@
         </div>
         <div class="tab-pane fade" id="viewSubs"></div>
     </div>
-    
+
     <script src="scripts/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
@@ -213,21 +213,16 @@
             
             let dataString = `username=${$('#username').val()}&password=${$('#password1').val()}`
 
-            $.ajax({
-                type: 'post',
-                url: 'php/register.php',
-                data: dataString,
-                success: function (data) {
-                    if (data === "0") {
-                        $('#user-exists').show();
-                    } else {
-                        $('#registered').show();
-                    }
-
-                    $('#registerForm')[0].reset();
-                    $('#registerForm').removeClass('was-validated');
-                    $('#password2').removeClass('is-valid');
+            $.post('php/register.php', dataString, function (data) {
+                if (data === "0") {
+                    $('#user-exists').show();
+                } else {
+                    $('#registered').show();
                 }
+
+                $('#registerForm')[0].reset();
+                $('#registerForm').removeClass('was-validated');
+                $('#password2').removeClass('is-valid');
             });
         });
 
@@ -253,15 +248,10 @@
             let form_data = new FormData();    
             form_data.append('image', file, file_name);
 
-            $.ajax({
-                type: 'post',
-                url: 'php/addArtwork.php',
-                data: dataString,
-                success: function () {
-                    $('#addArtForm')[0].reset();
-                    $('#addedArt').show();
-                    $('#addArtForm').removeClass('was-validated');
-                }
+            $.post('php/addArtwork.php', dataString, function () {
+                $('#addArtForm')[0].reset();
+                $('#addedArt').show();
+                $('#addArtForm').removeClass('was-validated');
             });
 
             $.ajax({
@@ -276,13 +266,8 @@
         });
 
         $("#logout").click(function() {
-            $.ajax({
-                type: 'get',
-                url: 'php/logout.php',
-                data: '',
-                success: function () {
-                    window.location.replace("http://localhost/cia2-project/login.html");
-                }
+            $.get('php/logout.php', function () {
+                window.location.replace("http://localhost/cia2-project/login.html");
             });
         });
 
