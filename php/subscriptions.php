@@ -22,7 +22,7 @@ $sql = "SELECT * FROM subscriptions";
 $result = $conn->query($sql);
 $row_no = 1;
 
-echo "<h2 id='title'>Subscriptions</h2>
+echo "
     <table class='table table-striped table-hover'>
     <caption>List of subscriptions. Total: ".$result->num_rows."</caption>
     <thead class='thead-dark'>
@@ -46,7 +46,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-echo "</tbody></table><input type='button' class='btn btn-danger' value='Update' onclick='updateSubs()'>";
+echo "</tbody></table>";
 
 $conn->close();
 ?>

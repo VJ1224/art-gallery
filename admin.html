@@ -36,6 +36,7 @@
     </div>
 
     <div class="nav nav-tabs nav-fill">
+        <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewArt">View Artwork</a>
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArt">Add Artwork</a>
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewSubs">View Subscriptions</a>
         <a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#register">Register User</a>
@@ -139,7 +140,35 @@
                 <input type="button" class="btn btn-danger" value="Login" id="registerButton">
             </form>
         </div>
-        <div class="tab-pane fade" id="viewSubs"></div>
+        <div class="tab-pane fade mb-3" id="viewSubs">
+            <h2 id='title'>Subscriptions</h2>
+            <div id="subTable"></div>
+            <input type='button' class='btn btn-danger' value='Update' onclick='updateSubs()'>
+        </div>
+        <div class="tab-pane fade mb-3" id="viewArt">
+            <h2 id='title'>Artwork</h2>
+            <div class='row'>
+                <div class='form-group mx-3'>
+                    <select class='form-control' id='sortArt'>
+                        <option value='aname'>Name</option>
+                        <option value='artist'>Artist</option>
+                        <option value='price'>Price</option>
+                        <option value='atype'>Type</option>
+                    </select>
+                </div>
+                <div class='form-group'>
+                    <select class='form-control' id='orderArt'>
+                        <option value='ASC' selected>Ascending</option>
+                        <option value='DESC'>Descending</option>
+                    </select>
+                </div>
+                <div class='form-group ml-3'>
+                    <input class='btn btn-danger' type='button' onclick='sortArt()' value='Sort'/>
+                </div>
+            </div>
+            <div id="artTable"></div>
+            <input type='button' class='btn btn-danger' value='Update' onclick='updateArt()'>
+        </div>
     </div>
 
     <script src="scripts/jquery.js"></script>
@@ -149,7 +178,21 @@
     <script>
         function updateSubs() {
             $.get('php/subscriptions.php', function (data) {
-                $('#viewSubs').html(data);
+                $('#subTable').html(data);
+            });
+        }
+
+        function updateArt() {
+            $.get('php/viewArtwork.php?sort=default&order=ASC', function (data) {
+                $('#artTable').html(data);
+            });
+        }
+
+        function sortArt() {
+            let sort = $('#sortArt').val();
+            let order = $('#orderArt').val();
+            $.get('php/viewArtwork.php?sort='+sort+'&order='+order, function (data) {
+                $('#artTable').html(data);
             });
         }
 
@@ -175,13 +218,14 @@
             $('#user-exists').hide();
 
             updateSubs();
+            updateArt();
 
             $.get('php/username.php', function (data) {
                 $('#greeting').html(data);
             });
             
-            $('#addArt').tab('show');
-            $('a[href="#addArt"').addClass('active');
+            $('#viewArt').tab('show');
+            $('a[href="#viewArt"').addClass('active');
         });
 
         $('#registerButton').click(function(event) {
