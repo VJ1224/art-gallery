@@ -10,7 +10,7 @@ $(document).ready(function() {
     });
 });
 
-const validate = () => {
+function validate() {
     $('form').addClass('was-validated');
     if (!$('form')[0].checkValidity()) {
         return false;

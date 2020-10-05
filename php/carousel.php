@@ -15,11 +15,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {    
     echo "<ol class='carousel-indicators'>";
     for ($i = 0; $i < $result->num_rows; $i++) {
-        if ($i == 0) {
-            echo "<li class='active' data-target='#imageCarousel' data-slide-to='".$i."'></li>";
-        } else {
-            echo "<li data-target='#imageCarousel' data-slide-to='".$i."'></li>";
-        }
+        echo "<li data-target='#imageCarousel' data-slide-to='".$i."'></li>";
     }
     echo "</ol>";
 
