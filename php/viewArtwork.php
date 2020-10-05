@@ -39,6 +39,7 @@ echo "<table class='table table-striped table-hover'>
           <th scope='col'>Artist</th>
           <th scope='col'>Price</th>
           <th scope='col'>Type</th>
+          <th scope='col'></th>
           </tr>
       </thead>
       <tbody>
@@ -52,6 +53,7 @@ if ($result->num_rows > 0) {
         <td>".$row["artist"]."</td>
         <td>".$row["price"]."</td>
         <td>".$row["atype"]."</td>
+        <td><input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"],"`,`".$row["artist"]."`)' value='Delete'/></td>
       </tr>";
       $row_no++;
     }

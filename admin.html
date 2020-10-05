@@ -162,6 +162,7 @@
                 </div>
                 <div class='form-group ml-3'>
                     <input class='btn btn-danger' type='button' onclick='sortArt()' value='Sort'/>
+                    <input class='btn btn-danger' type='button' onclick='updateArt()' value='Update'/>
                 </div>
             </div>
             <div id="artTable"></div>
@@ -191,6 +192,13 @@
             let order = $('#orderArt').val();
             $.get('php/viewArtwork.php?sort='+sort+'&order='+order, function (data) {
                 $('#artTable').html(data);
+            });
+        }
+
+        function deleteArt(aname, artist) {
+            let dataString = `aname=${aname}&artist=${artist}`;
+            $.post('php/deleteArtwork.php', dataString, function () {
+                updateArt();
             });
         }
 
@@ -247,7 +255,7 @@
                 return;
             }
             
-            let dataString = `username=${$('#username').val()}&password=${$('#password1').val()}`
+            let dataString = `username=${$('#username').val()}&password=${$('#password1').val()}`;
 
             $.post('php/register.php', dataString, function (data) {
                 if (data === "0") {
