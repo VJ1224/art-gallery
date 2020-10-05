@@ -20,7 +20,8 @@ function sortArt() {
 
 function groupArt() {
     let group = $('#sortArt').val();
-    $.get('php/groupArtwork.php?group='+group, function (data) {
+    let order = $('#orderArt').val();
+    $.get('php/groupArtwork.php?group='+group+'&order='+order, function (data) {
         $('#artTable').html(data);
     });
 }
