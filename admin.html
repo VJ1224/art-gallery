@@ -20,7 +20,6 @@
         
         <div class="navbar-collapse collapse" id="navbarContent">
             <ul class="ml-auto navbar-nav navbar-right">
-                <li class="nav-item"><a class="nav-link" href="admin.html">Admin</a></li>
                 <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                 <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
                 <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
@@ -103,7 +102,7 @@
                 </div>
         
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password1">Password</label>
                     <input type="password" class="form-control" name="password" id="password1" pattern="{8,}$" required>
                     <div class="invalid-feedback">
                         Minimum eight characters.
@@ -111,7 +110,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password">Confirm Password</label>
+                    <label for="password2">Confirm Password</label>
                     <input type="password" class="form-control" name="password" id="password2" required>
                     <div class="invalid-feedback">
                         Passwords do not match.
@@ -140,12 +139,11 @@
                 <input type="button" class="btn btn-danger" value="Login" id="registerButton">
             </form>
         </div>
-        <div class="tab-pane fade mb-3" id="viewSubs">
+        <div class="tab-pane fade" id="viewSubs">
             <h2 id='title'>Subscriptions</h2>
             <div id="subTable"></div>
-            <input type='button' class='btn btn-danger' value='Update' onclick='updateSubs()'>
         </div>
-        <div class="tab-pane fade mb-3" id="viewArt">
+        <div class="tab-pane fade" id="viewArt">
             <h2 id='title'>Artwork</h2>
             <div class='row'>
                 <div class='form-group mx-3'>
@@ -167,11 +165,11 @@
                 </div>
             </div>
             <div id="artTable"></div>
-            <input type='button' class='btn btn-danger' value='Update' onclick='updateArt()'>
         </div>
     </div>
 
     <script src="scripts/jquery.js"></script>
+    <script src="scripts/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
 
@@ -196,40 +194,34 @@
             });
         }
 
-        $.get('php/authenticate.php', function (data) {
-            if (data === "0") {
-                window.location.replace("http://localhost/cia2-project/login.html");
-            }
-        });
+        function authorise() {
+            $.get('php/authenticate.php', function (data) {
+                if (data === "0") {
+                    window.location.replace("http://localhost/cia2-project/login.html");
+                }
+            });
+
+            $.get('php/username.php', function (data) {
+                $('#greeting').html(data);
+            });
+        }
 
         $(document).ready(function () {
-            let pages = ['admin', 'index', 'gallery', 'contact'];
-            let pathname = window.location.pathname;
-            
-            $('.navbar-nav .nav-item .nav-link').each(function(i) {
-                if (pathname.includes(pages[i]))
-                    $(this).addClass('active');
-                else if (this.className.includes('active'))
-                    $(this).removeClass('active');
-            });
+            authorise();
+            updateSubs();
+            updateArt();
 
             $('#addedArt').hide();
             $('#registered').hide();
             $('#user-exists').hide();
 
-            updateSubs();
-            updateArt();
-
-            $.get('php/username.php', function (data) {
-                $('#greeting').html(data);
-            });
             
             $('#viewArt').tab('show');
             $('a[href="#viewArt"').addClass('active');
         });
 
         $('#registerButton').click(function(event) {
-            const validate = () => {
+            const valid = () => {
                 let valid = true;
 
                 $('#registerForm').addClass('was-validated');
@@ -251,7 +243,7 @@
                 return valid;
             }
 
-            if (!validate()) {
+            if (!valid()) {
                 return;
             }
             
@@ -271,14 +263,7 @@
         });
 
         $("#addArtButton").click(function(event) {
-            const validate = () => {
-                $('#addArtForm').addClass('was-validated');
-                if (!$('#addArtForm')[0].checkValidity()) {
-                    return false;
-                }
-
-                return true;
-            }
+            validate();
 
             if (!validate()) {
                 return;
@@ -304,8 +289,7 @@
                 processData: false,                       
                 cache: false,
                 contentType: false,
-                data: form_data,
-                success: function () {}
+                data: form_data
             });
         });
 

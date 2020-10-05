@@ -63,32 +63,12 @@
     </form>
       
     <script src="scripts/jquery.js"></script>
+    <script src="scripts/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script>
-    $(document).ready(function() {
-        let pages = ['index', 'gallery', 'contact'];
-        let pathname = window.location.pathname;
-        
-        $('.navbar-nav .nav-item .nav-link').each(function(i) {
-            if (pathname.includes(pages[i])) 
-                $(this).addClass('active');
-            else if (this.className.includes('active'))
-                $(this).removeClass('active');
-        });
-    });
-
     $("input[type='button']").click(function(event) {
-        const validate = () => {
-            $('#contactForm').addClass('was-validated');
-            if (!$('#contactForm')[0].checkValidity()) {
-                return false;
-            }
-
-            return true;
-        }
-
         if (!validate()) {
             return;
         }
