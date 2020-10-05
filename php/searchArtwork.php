@@ -19,9 +19,11 @@ if ($conn->connect_error) {
 }
 
 $search = $_GET['search'];
+$category = $_GET['category'];
 $row_no = 1;
 
-$stmt = $conn->prepare("SELECT FORMAT(price, 0) as 'price', aname, atype, artist FROM artwork WHERE aname LIKE '%".$search."%'");
+$sql = "SELECT FORMAT(price, 0) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE '%".$search."%'";
+$stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
 

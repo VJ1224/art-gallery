@@ -147,20 +147,21 @@
             <h2 id='title'>Artwork</h2>
             <div class="row">
                 <div class="form-group ml-3">
-                    <input class="form-control" type="search" id='searchArt' placeholder="Search">
+                    <input class="form-control" id="searchVal" type="search" placeholder="Search">
                 </div>
                 <div class="form-group ml-3">
-                    <input class="btn btn-danger" type='button' onclick='searchArt()' value='Search'/>
+                    <input class="btn btn-danger" id="searchArt" type='button' onclick='searchArt()' value='Search'/>
                 </div>
-            </div>
-            <div class='row'>
                 <div class='form-group mx-3'>
-                    <select class='form-control' id='sortArt' onchange='groupOrSort()'>
+                    <select class='form-control' id='sortArt' onchange='disableButtons()'>
                         <option value='aname'>Name</option>
                         <option value='artist'>Artist</option>
                         <option value='price'>Price</option>
                         <option value='atype'>Type</option>
                     </select>
+                </div>
+                <div class='form-group mr-3'>
+                    <input class='btn btn-danger' id="groupArt" type='button' onclick='groupArt()' value='Group' disabled/>
                 </div>
                 <div class='form-group'>
                     <select class='form-control' id='orderArt'>
@@ -170,9 +171,6 @@
                 </div>
                 <div class='form-group ml-3'>
                     <input class='btn btn-danger' type='button' onclick='sortArt()' value='Sort'/>
-                </div>
-                <div class='form-group ml-3'>
-                    <input class='btn btn-danger' id="groupArt" type='button' onclick='groupArt()' value='Group' disabled/>
                 </div>
             </div>
             <div id="artTable"></div>
@@ -213,8 +211,14 @@
             });
         }
 
-        function groupOrSort() {
+        function disableButtons() {
             let column = $('#sortArt').val();
+
+            if (column === 'price') {
+                $('#searchArt').prop('disabled', true);
+            } else {
+                $('#searchArt').prop('disabled', false);
+            }
 
             if (column === 'aname' || column === 'price') {
                 $('#groupArt').prop('disabled', true);
@@ -231,8 +235,9 @@
         }
 
         function searchArt() {
-            let query = $('#searchArt').val();
-            $.get('php/searchArtwork.php?search='+query, function (data) {
+            let query = $('#searchVal').val();
+            let category = $('#sortArt').val();
+            $.get('php/searchArtwork.php?search='+query+'&category='+category, function (data) {
                 $('#artTable').html(data);
             })
         }
