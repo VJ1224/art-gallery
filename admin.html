@@ -145,6 +145,14 @@
         </div>
         <div class="tab-pane fade" id="viewArt">
             <h2 id='title'>Artwork</h2>
+            <div class="row">
+                <div class="form-group ml-3">
+                    <input class="form-control" type="search" id='searchArt' placeholder="Search">
+                </div>
+                <div class="form-group ml-3">
+                    <input class="btn btn-danger" type='button' onclick='searchArt()' value='Search'/>
+                </div>
+            </div>
             <div class='row'>
                 <div class='form-group mx-3'>
                     <select class='form-control' id='sortArt'>
@@ -162,10 +170,10 @@
                 </div>
                 <div class='form-group ml-3'>
                     <input class='btn btn-danger' type='button' onclick='sortArt()' value='Sort'/>
-                    <input class='btn btn-danger' type='button' onclick='updateArt()' value='Update'/>
                 </div>
             </div>
             <div id="artTable"></div>
+            <input class='btn btn-danger mb-3' type='button' onclick='updateArt()' value='Update'/>
         </div>
     </div>
 
@@ -200,6 +208,13 @@
             $.post('php/deleteArtwork.php', dataString, function () {
                 updateArt();
             });
+        }
+
+        function searchArt() {
+            let query = $('#searchArt').val();
+            $.get('php/searchArtwork.php?search='+query, function (data) {
+                $('#artTable').html(data);
+            })
         }
 
         function authorise() {
