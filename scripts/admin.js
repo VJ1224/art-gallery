@@ -57,6 +57,28 @@ function searchArt() {
     })
 }
 
+function editArt(row_id) {
+    let row = document.getElementById(row_id);
+    let aname = row.cells[1].innerHTML;
+    let artist = row.cells[2].innerHTML;
+    let price = row.cells[3].innerHTML.replace(/,/g, '');
+    price = parseInt(price.slice(1));
+    let type = row.cells[4].innerHTML;
+    
+    $('#aname').val(aname);
+    $('#artist').val(artist);
+    $('#price').val(price);
+    $('#atype').val(type);
+    
+    $('#viewArt').removeClass('active');
+    $('#viewArt').removeClass('show');
+    $('a[href="#viewArt"]').removeClass('active');
+    $('#addArt').tab('show');
+    $('a[href="#addArt"]').addClass('active');
+
+    deleteArt(aname, artist);
+}
+
 function authorise() {
     $.get('php/authenticate.php', function (data) {
         if (data === "0") {
@@ -80,7 +102,7 @@ $(document).ready(function () {
 
     
     $('#viewArt').tab('show');
-    $('a[href="#viewArt"').addClass('active');
+    $('a[href="#viewArt"]').addClass('active');
 });
 
 $('#registerButton').click(function(event) {

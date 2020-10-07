@@ -47,13 +47,16 @@ echo "<table class='table table-striped table-hover'>
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "<tr>
+        echo "<tr id='row".$row_no."'>
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
         <td>₹".$row["value"]."</td>
         <td>".$row["atype"]."</td>
-        <td><input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"],"`,`".$row["artist"]."`)' value='Delete'/></td>
+        <td>
+          <input class='btn btn-danger' type='button' onclick='editArt(`row".$row_no."`)' value='Edit'/>
+          <input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"]."`,`".$row["artist"]."`)' value='Delete'/>
+        </td>
       </tr>";
       $row_no++;
     }
