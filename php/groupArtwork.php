@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $group = $_GET['group'];
 $order = $_GET['order'];
 
-$sql = "SELECT FORMAT(SUM(price),0) AS 'value', artist, atype, SUM(price) AS 'price' FROM artwork GROUP BY ".$group." ORDER BY price ".$order;
+$sql = "SELECT FORMAT(SUM(price),0) AS 'value', artist, atype, COUNT(*) AS 'total', SUM(price) AS 'price' FROM artwork GROUP BY ".$group." ORDER BY price ".$order;
 
 $result = $conn->query($sql);
 $row_no = 1;
@@ -34,7 +34,8 @@ echo "<table class='table table-striped table-hover'>
           ";
           if ($group == 'artist') echo "<th scope='col'>Artist</th>";
           else echo "<th scope='col'>Type</th>";
-          echo "<th scope='col'>Value</th>
+          echo "<th scope='col'>Total</th>
+          <th scope='col'>Value</th>
           </tr>
       </thead>
       <tbody>
@@ -46,7 +47,8 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>";
         if ($group == 'artist') echo "<td>".$row["artist"]."</td>";
         else echo "<td>".$row["atype"]."</td>";
-        echo "<td>₹".$row["value"]."</td>
+        echo "<td>".$row["total"]."</td>
+        <td>₹".$row["value"]."</td>
       </tr>";
       $row_no++;
     }
