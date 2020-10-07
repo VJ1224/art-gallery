@@ -1,14 +1,15 @@
 <?php
+    require '../vendor/autoload.php';
+    use Mailgun\Mailgun;
+    $mgClient = Mailgun::create('f05449ee3ab2e0475b6b226b10a2a006-07e45e2a-e63d5a39');
+    $domain = "sandbox948ee93d6ea94682baed5886faff15d9.mailgun.org";
+    
     $emailto = "vanshjain1224@gmail.com";
 
     $name = (isset($_POST['name']) ? $_POST['name']: '');
     $email = (isset($_POST['email']) ? $_POST['email']: '');
-    $subject = (isset($_POST['subject']) ? $_POST['subject']: '');
+    $subject = 'ArtHub: '.(isset($_POST['subject']) ? $_POST['subject']: '');
     $body = (isset($_POST['message']) ? $_POST['message']: '');
-    
-    $headers  = 'MIME-Version: 1.0' . "\r\n";
-    $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
-    $headers .= "From:" . $email . "\r\n";
     
     $message = "A new message was sent to you from ArtHub.\n\n";
 
@@ -23,5 +24,10 @@
     $message .= "Message: \n";
     $message .= $body;
 
-    mail($emailto, $subject, $message, $headers)
+    $result = $mgClient->messages()->send($domain, array(
+        'from'	=> $name." ".$email,
+        'to'	=> $emailto,
+        'subject' => $subject,
+        'text'	=> $message
+    ));
 ?>
