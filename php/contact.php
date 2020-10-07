@@ -1,9 +1,10 @@
 <?php
     require '../vendor/autoload.php';
+    $ini = parse_ini_file('../setup.ini');
     use Mailgun\Mailgun;
-    $mgClient = Mailgun::create('f05449ee3ab2e0475b6b226b10a2a006-07e45e2a-e63d5a39');
+
+    $mgClient = Mailgun::create($ini["MAILGUN"]);
     $domain = "sandbox948ee93d6ea94682baed5886faff15d9.mailgun.org";
-    
     $emailto = "vanshjain1224@gmail.com";
 
     $name = (isset($_POST['name']) ? $_POST['name']: '');
