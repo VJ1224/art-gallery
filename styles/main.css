@@ -6,6 +6,8 @@ body {
 .jumbotron {
     background-color: #bf4e6e;
     color: #ffffff;
+    background-image: url('../images/background.png');
+    background-blend-mode: overlay;
 }
 
 .navbar {
@@ -13,7 +15,7 @@ body {
 }
 
 .nav-tabs {
-    background-color: #bf4e6e;
+    background-color: transparent;
 }
 
 .nav-tabs a {
@@ -30,13 +32,13 @@ body {
 
 .nav-tabs .nav-link.active:hover {
     color: #ffffff;
-    background-color: #ab4663;
+    background-color: rgba(191, 78, 110, 0.2);
     border-color: transparent transparent #393e46;
     border-bottom: 5px solid;
 }
 
 .nav-tabs .nav-link:hover {
-    background-color: #ab4663;
+    background-color: rgba(191, 78, 110, 0.2);
     border-color: transparent;
 }
 
