@@ -12,8 +12,8 @@ if ($conn->connect_error) {
 $name = (isset($_POST['name']) ? $_POST['name']: '');
 $email = (isset($_POST['email']) ? $_POST['email']: '');
 
-$sql = "INSERT INTO subscriptions VALUES ('".$name."','".$email."')";
-
-$conn->query($sql);
+$stmt = $conn->prepare("INSERT INTO subscriptions VALUES (?,?)");
+$stmt->bind_param("ss", $name, $email);
+$stmt->execute();
 $conn->close();
 ?>

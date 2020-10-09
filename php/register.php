@@ -19,7 +19,7 @@ if ($conn->connect_error) {
 }
 
 $user = (isset($_POST['username']) ? $_POST['username']: '');
-$pass = strtoupper(hash('sha256', (isset($_POST['password']) ? $_POST['password']: '')));
+$pass = hash('sha256', (isset($_POST['password']) ? $_POST['password']: ''));
 
 $stmt = $conn->prepare("SELECT username FROM users WHERE username=?");
 
