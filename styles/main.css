@@ -32,13 +32,15 @@ body {
 
 .nav-tabs .nav-link.active:hover {
     color: #ffffff;
-    background-color: rgba(191, 78, 110, 0.2);
+    background-color: rgba(191, 78, 110, 0.7);
     border-color: transparent transparent #393e46;
+    border-radius: 50px 50px 0px 0px;
     border-bottom: 5px solid;
 }
 
 .nav-tabs .nav-link:hover {
-    background-color: rgba(191, 78, 110, 0.2);
+    background-color: rgba(191, 78, 110, 0.7);
+    border-radius: 50px 50px 0px 0px;
     border-color: transparent;
 }
 
