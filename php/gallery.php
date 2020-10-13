@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
     }
     echo "</div>";
 } else {
-    echo "<h5>No ".$type." artwork available right now. Check back soon!</h5>";
+    echo "<h5>No artwork available right now. Check back soon!</h5>";
 }
 
 $conn->close();

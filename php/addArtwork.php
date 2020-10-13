@@ -23,6 +23,17 @@ $artist = (isset($_POST['artist']) ? $_POST['artist']: '');
 $price = intval(isset($_POST['price']) ? $_POST['price']: '0');
 $atype = (isset($_POST['atype']) ? $_POST['atype']: '');
 
+
+$stmt = $conn->prepare("SELECT * FROM artwork WHERE aname=? AND artist=?");
+$stmt->bind_param("ss", $aname, $artist);
+$stmt->execute();
+$stmt->store_result();
+
+if($stmt->num_rows > 0) {
+  echo "0";
+  die();
+}
+
 $stmt = $conn->prepare("INSERT INTO artwork VALUES (?,?,?,?)");
 
 $stmt->bind_param("ssis", $aname, $artist, $price, $atype);

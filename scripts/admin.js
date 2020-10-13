@@ -97,6 +97,7 @@ $(document).ready(function () {
     updateArt();
 
     $('#addedArt').hide();
+    $('#errorArt').hide();
     $('#registered').hide();
     $('#user-exists').hide();
 
@@ -162,19 +163,24 @@ $("#addArtButton").click(function(event) {
     let form_data = new FormData();    
     form_data.append('image', file, file_name);
 
-    $.post('php/addArtwork.php', dataString, function () {
+    $.post('php/addArtwork.php', dataString, function (data) {
+        if (data === "0") {
+            $('#errorArt').show();
+            return;
+        }
+
         $('#addArtForm')[0].reset();
         $('#addedArt').show();
         $('#addArtForm').removeClass('was-validated');
-    });
 
-    $.ajax({
-        type: 'post',
-        url: 'php/upload.php',
-        processData: false,                       
-        cache: false,
-        contentType: false,
-        data: form_data
+        $.ajax({
+            type: 'post',
+            url: 'php/upload.php',
+            processData: false,                       
+            cache: false,
+            contentType: false,
+            data: form_data
+        });
     });
 });
 
