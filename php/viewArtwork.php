@@ -22,9 +22,9 @@ $sort = $_GET['sort'];
 $order = $_GET['order'];
 
 if ($sort == 'default') {
-  $sql = "SELECT FORMAT(price, 0) as 'value', aname, atype, artist FROM artwork";
+  $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork";
 } else {
-  $sql = "SELECT FORMAT(price, 0) as 'value', aname, atype, artist FROM artwork ORDER BY ".$sort." ".$order;
+  $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork ORDER BY ".$sort." ".$order;
 }
 
 $result = $conn->query($sql);
@@ -51,7 +51,7 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
-        <td>₹".$row["value"]."</td>
+        <td>".$row["value"]."</td>
         <td>".$row["atype"]."</td>
         <td>
           <input class='btn btn-danger' type='button' onclick='editArt(`row".$row_no."`)' value='Edit'/>

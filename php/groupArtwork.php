@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $group = $_GET['group'];
 $order = $_GET['order'];
 
-$sql = "SELECT FORMAT(SUM(price),0) AS 'value', artist, atype, COUNT(*) AS 'total', SUM(price) AS 'price' FROM artwork GROUP BY ".$group." ORDER BY price ".$order;
+$sql = "SELECT formatCurrency(SUM(price)) AS 'value', artist, atype, COUNT(*) AS 'total', SUM(price) AS 'price' FROM artwork GROUP BY ".$group." ORDER BY price ".$order;
 
 $result = $conn->query($sql);
 $row_no = 1;
@@ -48,7 +48,7 @@ if ($result->num_rows > 0) {
         if ($group == 'artist') echo "<td>".$row["artist"]."</td>";
         else echo "<td>".$row["atype"]."</td>";
         echo "<td>".$row["total"]."</td>
-        <td>₹".$row["value"]."</td>
+        <td>".$row["value"]."</td>
       </tr>";
       $row_no++;
     }

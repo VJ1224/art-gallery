@@ -22,7 +22,7 @@ $search = $_GET['search'];
 $category = $_GET['category'];
 $row_no = 1;
 
-$sql = "SELECT FORMAT(price, 0) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE '%".$search."%'";
+$sql = "SELECT formatCurrency(price) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE '%".$search."%'";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -47,7 +47,7 @@ if ($result->num_rows > 0) {
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
-        <td>₹".$row["price"]."</td>
+        <td>".$row["price"]."</td>
         <td>".$row["atype"]."</td>
         <td>
           <input class='btn btn-danger' type='button' onclick='editArt(`row".$row_no."`)' value='Edit'/>  
