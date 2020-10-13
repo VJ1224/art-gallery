@@ -18,12 +18,13 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$search = $_GET['search'];
+$search = "%".$_GET['search']."%";
 $category = $_GET['category'];
 $row_no = 1;
 
-$sql = "SELECT formatCurrency(price) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE '%".$search."%'";
+$sql = "SELECT formatCurrency(price) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE ?";
 $stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $search);
 $stmt->execute();
 $result = $stmt->get_result();
 
