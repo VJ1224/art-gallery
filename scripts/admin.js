@@ -104,6 +104,10 @@ $(document).ready(function () {
     
     $('#viewArt').tab('show');
     $('a[href="#viewArt"]').addClass('active');
+
+    $.get('php/generateCSV.php', function (data) {
+        $('#viewSubs #title').append('<br><a id="downloadButton" class="btn btn-danger" href="php/'+data+'" download>Download as CSV</a>');
+    });
 });
 
 $('#registerButton').click(function(event) {
