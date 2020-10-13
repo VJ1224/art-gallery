@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         if ($row_num == 0) {
             echo "<div class='carousel-item active' style='height:24rem;' >
-                <img src='images/art/".$row["aname"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
+                <img src='images/art/".$row["aname"]." ".$row["artist"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
                     <h5>".$row["aname"]."</h5>
                     <p>".$row["artist"]."</p>
@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
                 </div>";
         } else {
             echo "<div class='carousel-item' style='height:24rem;'>
-                <img src='images/art/".$row["aname"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
+                <img src='images/art/".$row["aname"]." ".$row["artist"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
                     <h5>".$row["aname"]."</h5>
                     <p>".$row["artist"]."</p>

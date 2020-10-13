@@ -157,7 +157,7 @@ $("#addArtButton").click(function(event) {
     let dataString = `aname=${$('#aname').val()}&artist=${$('#artist').val()}&price=${$('#price').val()}&atype=${$('#atype').val()}`
 
     let file = $('#image').prop('files')[0];
-    let file_name = $('#aname').val() + '.jpg';
+    let file_name = $('#aname').val() + " " + $('#artist').val() + '.jpg';
 
     let form_data = new FormData();    
     form_data.append('image', file, file_name);
