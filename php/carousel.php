@@ -9,8 +9,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT aname, artist FROM artwork ORDER BY RAND() LIMIT 5";
-$result = $conn->query($sql);
+$result = $conn->query("CALL randomArt(@p0, @p1)");
 
 if ($result->num_rows > 0) {    
     echo "<ol class='carousel-indicators'>";
@@ -21,23 +20,24 @@ if ($result->num_rows > 0) {
 
     echo "<div class='carousel-inner' style='background-color: #3e4149;'>";
     $row_num = 0;
-    while ($row = $result->fetch_assoc()) {
+    while ($row = $result->fetch_row()) {
+        $image = $row[0]." ".$row[1];
         if ($row_num == 0) {
             echo "<div class='carousel-item active' style='height:24rem;' >
-                <img src='images/art/".$row["aname"]." ".$row["artist"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
+                <img src='images/art/".$image.".jpg' class='d-block h-100' alt=".$image." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
-                    <h5>".$row["aname"]."</h5>
-                    <p>".$row["artist"]."</p>
+                    <h5>".$row[0]."</h5>
+                    <p>".$row[1]."</p>
                 </div>
                 </div>";
         } else {
             echo "<div class='carousel-item' style='height:24rem;'>
-                <img src='images/art/".$row["aname"]." ".$row["artist"].".jpg' class='d-block h-100' alt=".$row["aname"]." style='margin: auto;'>
+                <img src='images/art/".$image.".jpg' class='d-block h-100' alt=".$image." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
-                    <h5>".$row["aname"]."</h5>
-                    <p>".$row["artist"]."</p>
+                    <h5>".$row[0]."</h5>
+                    <p>".$row[1]."</p>
                 </div>
-                </div>";   
+                </div>";
         }
 
         $row_num++;
