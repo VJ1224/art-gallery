@@ -1,6 +1,4 @@
 <?php
-error_reporting(0);
-
 ob_start();
 include('authenticate.php');
 $auth = ob_get_contents();

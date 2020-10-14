@@ -1,6 +1,4 @@
 <?php
-error_reporting(0);
-
 $csv_filename = 'subscriptions_'.date('Y-m-d').'.csv';
 
 $servername = "localhost";
