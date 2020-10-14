@@ -1,12 +1,14 @@
 <?php
+error_reporting(0);
+
 $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "cia2_project";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die();
 }
 
 $result = $conn->query("CALL randomArt(@p0, @p1)");

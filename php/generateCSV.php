@@ -1,4 +1,6 @@
 <?php
+error_reporting(0);
+
 $csv_filename = 'subscriptions_'.date('Y-m-d').'.csv';
 
 $servername = "localhost";
@@ -6,16 +8,15 @@ $username = "root";
 $password = "";
 $dbname = "cia2_project";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die();
 }
 
 $csv_export = '';
 
 $sql = "SELECT * FROM subscriptions";
 $result = $conn->query($sql);
-$num_fields = mysqli_num_fields($result);
 
 $csv_export.= '"Name",';
 $csv_export.= '"Email",';

@@ -1,4 +1,6 @@
 <?php    
+error_reporting(0);
+
 ob_start();
 include('authenticate.php');
 $auth = ob_get_contents();
@@ -13,9 +15,9 @@ $username = "root";
 $password = "";
 $dbname = "cia2_project";
 
-$conn = mysqli_connect($servername, $username, $password, $dbname);
+$conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
+    die();
 }
 
 $group = $_GET['group'];
