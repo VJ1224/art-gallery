@@ -18,7 +18,7 @@ if ($result->num_rows > 0) {
     }
     echo "</ol>";
 
-    echo "<div class='carousel-inner' style='background-color: #3e4149;'>";
+    echo "<div class='carousel-inner'>";
     $row_num = 0;
     while ($row = $result->fetch_row()) {
         $image = $row[0]." ".$row[1];
@@ -43,10 +43,10 @@ if ($result->num_rows > 0) {
         $row_num++;
     }
     echo "</div>
-    <a class='carousel-control-prev' href='#imageCarousel' data-slide='prev'>
+    <a class='carousel-control-prev' id='carousel-control' href='#imageCarousel' data-slide='prev'>
         <span class='carousel-control-prev-icon'></span>
     </a>
-    <a class='carousel-control-next' href='#imageCarousel' role='button' data-slide='next'>
+    <a class='carousel-control-next' id='carousel-control' href='#imageCarousel' role='button' data-slide='next'>
         <span class='carousel-control-next-icon'></span>
     </a>";
 }
