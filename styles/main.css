@@ -79,3 +79,14 @@ form > #title {
     opacity: 1;
     transition: 0.3s;
 }
+
+.spinner-border {
+    width: 10rem;
+    height: 10rem;
+    display: block;
+    position: fixed;
+    z-index: 1031;
+    top: 50%;
+    right: 50%;
+    margin-top: 5rem;
+  }

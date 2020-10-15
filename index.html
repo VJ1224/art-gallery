@@ -89,28 +89,22 @@
         
         let dataString = `name=${$('#name').val()}&email=${$('#email').val()}`
 
-        $('#subscribeForm').html(
-            `<div class="spinner-border text-danger"></div>`
-        );
-
         $('#subscribeForm').removeClass('container');
         $('#subscribeForm').removeClass('shadow');
         $('#subscribeForm').removeClass('p-5');
         $('#subscribeForm').addClass('ml-5');
         $('#subscribeForm').addClass('mr-5');
-
-        $.post('php/subscribe.php', dataString);
-
-        setTimeout(function () {
-            $('#subscribeForm').html(
+        
+        $('#subscribeForm').html(
                 `<div class="alert alert-success alert-dismissible fade show" role="alert">
                     Thank you for subscribing! We will reach out to you soon.
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>`
-            )
-        }, 2000);
+            );
+
+        $.post('php/subscribe.php', dataString);
     });
     </script>
 </body>
