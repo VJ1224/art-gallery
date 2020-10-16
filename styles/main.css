@@ -1,6 +1,9 @@
 body {
 	background-color: #eee;
 	color: #222831;
+	position: relative;
+	min-height: 100vh;
+	padding-bottom: 4rem;
 }
 
 .jumbotron {
@@ -84,15 +87,18 @@ form > #title {
 	width: 10rem;
 	height: 10rem;
 	margin: 0rem;
-	top: calc( 50% - ( 10rem / 2) );
-	bottom: calc( 50% - ( 10rem / 2) );
-	right: calc( 50% - ( 10rem / 2) );
-	left: calc( 50% - ( 10rem / 2) );
+	top: calc(50% - (10rem / 2));
+	bottom: calc(50% - (10rem / 2));
+	right: calc(50% - (10rem / 2));
+	left: calc(50% - (10rem / 2));
 }
 
 footer {
 	background-color: #f38181;
 	color: #ffffff;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
 }
 
 .social-icon {
