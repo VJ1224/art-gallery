@@ -1,109 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact | ArtHub</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="styles/main.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Contact | ArtHub</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
-        <a class="navbar-brand" href="#">
-            <img src="images/drop.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            ArtHub
-        </a>
-        
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <div class="navbar-collapse collapse" id="navbarContent">
-            <ul class="ml-auto navbar-nav navbar-right">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-dark" role="navigation">
+		<a class="navbar-brand" href="#">
+			<img src="images/drop.png" width="30" height="30" class="d-inline-block align-top" alt="">
+			ArtHub
+		</a>
+		
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		
+		<div class="navbar-collapse collapse" id="navbarContent">
+			<ul class="ml-auto navbar-nav navbar-right">
+				<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+				<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+	</nav>
 
-    <div class="jumbotron jumbotron-fluid mb-0">
-        <div class="container">
-          <h1 class="display-4">Contact Us</h1>
-        </div>
-    </div>
+	<div class="jumbotron jumbotron-fluid mb-0">
+		<div class="container">
+		  <h1 class="display-4">Contact Us</h1>
+		</div>
+	</div>
 
-    <form class="container needs-validation p-5 shadow my-5" id="contactForm" novalidate>
-        <h2 id="title">Send a Mail</h2>
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" name="name" required />
-        </div>
+	<form class="container needs-validation p-5 shadow my-5" id="contactForm" novalidate>
+		<h2 id="title">Send a Mail</h2>
+		<div class="form-group">
+			<label for="name">Name</label>
+			<input type="text" class="form-control" id="name" name="name" required />
+		</div>
 
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" class="form-control" id="email" name="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
-            <div class="invalid-feedback">
-                Enter a valid email address.
-            </div>
-        </div>
-        
-        <div class="form-group">
-            <label for="subject">Subject</label>
-            <input type="text" class="form-control" id="subject" name="subject" required />
-        </div>
+		<div class="form-group">
+			<label for="email">Email</label>
+			<input type="text" class="form-control" id="email" name="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+			<div class="invalid-feedback">
+				Enter a valid email address.
+			</div>
+		</div>
+		
+		<div class="form-group">
+			<label for="subject">Subject</label>
+			<input type="text" class="form-control" id="subject" name="subject" required />
+		</div>
 
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="6"  style="resize:vertical;" required></textarea>
-        </div>
-        
-        <input type="button" class="btn btn-danger" value="Send"/>
-        <input type="reset" class="btn btn-secondary" value="Clear" />
-    </form>
-      
-    <script src="scripts/jquery.js"></script>
-    <script src="scripts/script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<div class="form-group">
+			<label for="message">Message</label>
+			<textarea class="form-control" id="message" name="message" rows="6"  style="resize:vertical;" required></textarea>
+		</div>
+		
+		<input type="button" class="btn btn-danger" value="Send"/>
+		<input type="reset" class="btn btn-secondary" value="Clear" />
+	</form>
 
-    <script>
-    $("input[type='button']").click(function(event) {
-        if (!validate()) {
-            return;
-        }
-        
-        let dataString = `name=${$('#name').val()}&email=${$('#email').val()}&subject=${$('#subject').val()}&message=${$('#message').val()}`
-        
-        $('#contactForm').html(
-            `<div class="spinner-border text-danger"></div>`
-        );
+	<footer>
+		<div class="text-center py-3 pr-3">© 2020 Copyright ArtHub</div>
+  	</footer>
+	  
+	<script src="scripts/jquery.js"></script>
+	<script src="scripts/script.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
-        $('#contactForm').removeClass('container');
-        $('#contactForm').removeClass('shadow');
-        $('#contactForm').removeClass('p-5');
-        $('#contactForm').addClass('mx-5');
+	<script>
+	$("input[type='button']").click(function(event) {
+		if (!validate()) {
+			return;
+		}
+		
+		let dataString = `name=${$('#name').val()}&email=${$('#email').val()}&subject=${$('#subject').val()}&message=${$('#message').val()}`
+		
+		$('#contactForm').html(
+			`<div class="spinner-border text-danger"></div>`
+		);
 
-        $.post('php/contact.php', dataString);
+		$('#contactForm').removeClass('container');
+		$('#contactForm').removeClass('shadow');
+		$('#contactForm').removeClass('p-5');
+		$('#contactForm').addClass('mx-5');
 
-        setTimeout(function () {
-            $('#contactForm').html(
-                `<h6 class="m-3">
-                    Thank you for getting in touch with us!
-                </h6>
-                <p class="m-3">
-                    We have received your message and will get back to you as soon as possible.
-                    If your inquiry is urgent, please use the phone number below to contact us.
-                    <br><br>
-                    Regards,
-                    <br>
-                    Team ArtHub
-                    <br>
-                    Phone: +91 9833396142
-                </p>`
-            )
-        }, 2000);
-    });
-    </script>
+		$.post('php/contact.php', dataString);
+
+		setTimeout(function () {
+			$('#contactForm').html(
+				`<h6 class="m-3">
+					Thank you for getting in touch with us!
+				</h6>
+				<p class="m-3">
+					We have received your message and will get back to you as soon as possible.
+					If your inquiry is urgent, please use the phone number below to contact us.
+					<br><br>
+					Regards,
+					<br>
+					Team ArtHub
+					<br>
+					Phone: +91 9833396142
+				</p>`
+			)
+		}, 2000);
+	});
+	</script>
 </body>
 </html>
