@@ -3,7 +3,7 @@ body {
 	color: #222831;
 	position: relative;
 	min-height: 100vh;
-	padding-bottom: 4rem;
+	padding-bottom: 8rem;
 }
 
 .jumbotron {
@@ -88,8 +88,6 @@ form > #title {
 	height: 10rem;
 	margin: 0rem;
 	top: calc(50% - (10rem / 2));
-	bottom: calc(50% - (10rem / 2));
-	right: calc(50% - (10rem / 2));
 	left: calc(50% - (10rem / 2));
 }
 
@@ -102,6 +100,12 @@ footer {
 }
 
 .social-icon {
-	width: 1rem;
-	height: 1rem;
+	width: 2rem;
+	height: 2rem;
+	margin-right: 0.5rem;
+}
+
+.footer-content {
+	background-color: #ffffff;
+	border-radius: 25px;
 }
