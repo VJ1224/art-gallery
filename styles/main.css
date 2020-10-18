@@ -6,24 +6,33 @@ body {
 	padding-bottom: 8rem;
 }
 
+footer {
+	background-color: #f38181;
+	color: #ffffff;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+form > #title {
+	color: #ffffff;;
+}
+
+form.container {
+	background-color: #f08a5d;
+	border-radius: 25px;
+}
+
+.footer-content {
+	background-color: #ffffff;
+	border-radius: 25px;
+}
+
 .jumbotron {
 	background-color: #bf4e6e;
 	color: #ffffff;
 	background-image: url('../images/background.png');
 	background-blend-mode: overlay;
-}
-
-.navbar {
-	background-color: #b83b5e;
-}
-
-.nav-tabs {
-	background-color: transparent;
-}
-
-.nav-tabs a {
-	text-decoration: none;
-	color: #ffffff;
 }
 
 .nav-tabs .nav-link, .nav-tabs .nav-link.active {
@@ -37,66 +46,28 @@ body {
 	border-bottom: 5px solid;
 }
 
+.nav-tabs .nav-link.active:hover {
+	border-color: transparent transparent #393e46;
+	border-bottom: 5px solid;
+}
+
 .nav-tabs .nav-link:hover, .nav-tabs .nav-link.active:hover {
 	background-color: #bf4e6e;
 	border-radius: 50px 50px 0px 0px;
 	border-color: transparent;
 }
 
-.nav-tabs .nav-link.active:hover {
-	border-color: transparent transparent #393e46;
-	border-bottom: 5px solid;
-}
-
-.spinner-border {
-	position: relative;
-	left: 50%;
-	right: 50%;
-	top: 50%;
-	bottom: 50%;
-	margin: -8em;
-	width: 8rem; 
-	height: 8rem;
-}
-
-form.container {
-	background-color: #f08a5d;
-	border-radius: 25px;
-}
-
-form > #title {
-	color: #ffffff;;
-}
-
-#imageCarousel > div {
-	border-radius: 25px;
-	background-color: #D3D3D3;
-}
-
-#carousel-control {
-	background-color: #903749;
-	border-radius: 50px;
-	height: 3.5rem;
-	width: 3.5rem;
-	top: 50%;
-	opacity: 1;
-	transition: 0.3s;
-}
-
-.spinner-border {
-	width: 10rem;
-	height: 10rem;
-	margin: 0rem;
-	top: calc(50% - (10rem / 2));
-	left: calc(50% - (10rem / 2));
-}
-
-footer {
-	background-color: #f38181;
+.nav-tabs a {
+	text-decoration: none;
 	color: #ffffff;
-	position: absolute;
-	bottom: 0;
-	width: 100%;
+}
+
+.nav-tabs {
+	background-color: transparent;
+}
+
+.navbar {
+	background-color: #b83b5e;
 }
 
 .social-icon {
@@ -105,7 +76,26 @@ footer {
 	margin-right: 0.5rem;
 }
 
-.footer-content {
-	background-color: #ffffff;
+.spinner-border {
+	position: relative;
+	width: 10rem;
+	height: 10rem;
+	margin: 0rem;
+	top: calc(50% - (10rem / 2));
+	left: calc(50% - (10rem / 2));
+}
+
+#carousel-control {
+	background-color: #903749;
+	border-radius: 50px;
+	height: 3.5rem;
+	width: 3.5rem;
+	top: calc(50% - (3.5rem / 2));
+	opacity: 1;
+	transition: 0.3s;
+}
+
+#imageCarousel > div {
 	border-radius: 25px;
+	background-color: #D3D3D3;
 }
