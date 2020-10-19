@@ -99,3 +99,7 @@ form.container {
 	border-radius: 25px;
 	background-color: #D3D3D3;
 }
+
+#post-title, .list-group-item > div > h5 {
+	color: #e84545;
+}
