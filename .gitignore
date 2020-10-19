@@ -2,4 +2,4 @@ images/art/*
 blog/*
 vendor/
 setup.ini
-*.csv
+files/*

@@ -1,5 +1,5 @@
 <?php
-$csv_filename = 'subscriptions_'.date('Y-m-d').'.csv';
+$csv_filename = '../files/subscriptions_'.date('Y-m-d').'.csv';
 
 $servername = "localhost";
 $username = "root";
