@@ -28,10 +28,33 @@
 		</div>
 	</nav>
 
+	<div class="modal fade" id="post-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
+		<div class="modal-dialog modal-xl">
+		  	<div class="modal-content">
+				<div class="modal-header">
+			  	<h5 class="modal-title" id="post-title"></h5>
+			  	<button type="button" class="close" data-dismiss="modal" onclick="clearPost()">
+					<span aria-hidden="true">&times;</span>
+			  	</button>
+				</div>
+				
+				<div class="modal-body" id="post-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+		  </div>
+		</div>
+	</div>
+
 	<div class="jumbotron jumbotron-fluid mb-0">
 		<div class="container">
 		  <h1 class="display-4">Blog</h1>
 		</div>
+	</div>
+
+	
+	<div class="container mt-3">
+		<h3>Recent Posts</h3>
 	</div>
 
 	<div class="container mt-3" id="blog-posts">
@@ -57,6 +80,19 @@
 			$('#blog-posts').html(data);
 		});
 	});
+
+	function loadPost(element) {
+		let title = $(element).find('h5').html();
+		$('#post-title').html(title);
+    	let content = "blog/" + encodeURIComponent(title) + ".txt";
+    	$('#post-body').load(content);
+		$('#post-modal').modal('show');
+	}
+
+	function clearPost() {
+		$('#post-title').html('');
+    	$("#post-body").html('');
+	}
 	</script>
 </body>
 </html>
