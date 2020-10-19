@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Contact | ArtHub</title>
+	<title>Blog | ArtHub</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 	<link rel="stylesheet" href="styles/main.css">
 </head>
@@ -30,38 +30,12 @@
 
 	<div class="jumbotron jumbotron-fluid mb-0">
 		<div class="container">
-		  <h1 class="display-4">Contact Us</h1>
+		  <h1 class="display-4">Blog</h1>
 		</div>
 	</div>
 
-	<form class="container needs-validation p-5 shadow my-5" id="contactForm" novalidate>
-		<h2 id="title">Send a Mail</h2>
-		<div class="form-group">
-			<label for="name">Name</label>
-			<input type="text" class="form-control" id="name" name="name" required />
-		</div>
-
-		<div class="form-group">
-			<label for="email">Email</label>
-			<input type="text" class="form-control" id="email" name="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
-			<div class="invalid-feedback">
-				Enter a valid email address.
-			</div>
-		</div>
-		
-		<div class="form-group">
-			<label for="subject">Subject</label>
-			<input type="text" class="form-control" id="subject" name="subject" required />
-		</div>
-
-		<div class="form-group">
-			<label for="message">Message</label>
-			<textarea class="form-control" id="message" name="message" rows="6"  style="resize:vertical;" required></textarea>
-		</div>
-		
-		<input type="button" class="btn btn-danger" value="Send"/>
-		<input type="reset" class="btn btn-secondary" value="Clear" />
-	</form>
+	<div class="container mt-3" id="blog-posts">
+	</div>
 
 	<footer class="justify-content-center text-center">
 		<div class="footer-content d-inline-block py-3 pl-3 my-3">	
@@ -71,52 +45,17 @@
 		</div>
 		<div class="d-inline-block py-3 px-3 my-3">© 2020 Copyright ArtHub</div>
   	</footer>
-
+	
 	<script src="scripts/jquery.js"></script>
 	<script src="scripts/script.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-
+	
 	<script>
-	$("input[type='button']").click(function(event) {
-		if (!validate()) {
-			return;
-		}
-		
-		let dataString = `name=${$('#name').val()}&email=${$('#email').val()}&subject=${$('#subject').val()}&message=${$('#message').val()}`
-		
-		$('#contactForm').html(
-			`<div class="spinner-border text-danger"></div>`
-		);
-
-		$('#contactForm').removeClass('container');
-		$('#contactForm').removeClass('shadow');
-		$('#contactForm').removeClass('p-5');
-		$('#contactForm').addClass('mx-5');
-
-		$.post('php/contact.php', dataString);
-
-		setTimeout(function () {
-			$('#contactForm').html(
-				`<h6 class="m-3">
-					Thank you for getting in touch with us!
-				</h6>
-				<p class="m-3">
-					We have received your message and will get back to you as soon as possible.
-					If your inquiry is urgent, please use the phone number below to contact us.
-					<br><br>
-					Regards,
-					<br>
-					Team ArtHub
-					<br><br>
-					In the meantime, follow us on social media!
-					<br><br>
-					<a href="https://facebook.com" target="_blank"><img class="social-icon" src="images/facebook.png" alt="Facebook"></a>
-					<a href="https://instagram.com" target="_blank"><img class="social-icon" src="images/instagram.png" alt="Instagram"></a>
-					<a href="https://twitter.com" target="_blank"><img class="social-icon" src="images/twitter.png" alt="Twitter"></a>
-				</p>`
-			)
-		}, 2000);
+	$(document).ready(function() {
+		$.get('php/posts.php', function (data) {
+			$('#blog-posts').html(data);
+		});
 	});
 	</script>
 </body>

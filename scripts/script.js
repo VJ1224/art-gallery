@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let pages = ['index', 'gallery', 'contact'];
+    let pages = ['index', 'gallery', 'blog', 'contact'];
     let pathname = window.location.pathname;
     
     $('.navbar-nav .nav-item .nav-link').each(function(i) {
