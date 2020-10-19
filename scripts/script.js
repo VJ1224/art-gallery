@@ -10,9 +10,9 @@ $(document).ready(function() {
     });
 });
 
-function validate() {
-    $('form').addClass('was-validated');
-    if (!$('form')[0].checkValidity()) {
+function validate(element) {
+    $(element).addClass('was-validated');
+    if (!$(element)[0].checkValidity()) {
         return false;
     }
 

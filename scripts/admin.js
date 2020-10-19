@@ -154,7 +154,7 @@ $('#registerButton').click(function(event) {
 });
 
 $("#addArtButton").click(function(event) {
-    if (!validate()) {
+    if (!validate('#addArtForm')) {
         return;
     }
     
@@ -188,7 +188,7 @@ $("#addArtButton").click(function(event) {
 });
 
 $("#postButton").click(function(event) {
-    if (!validate()) {
+    if (!validate('#postForm')) {
         return;
     }
 
