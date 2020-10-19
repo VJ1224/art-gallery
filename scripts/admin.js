@@ -100,6 +100,7 @@ $(document).ready(function () {
     $('#errorArt').hide();
     $('#registered').hide();
     $('#user-exists').hide();
+    $('#addedPost').hide();
 
     
     $('#viewArt').tab('show');
@@ -153,8 +154,6 @@ $('#registerButton').click(function(event) {
 });
 
 $("#addArtButton").click(function(event) {
-    validate();
-
     if (!validate()) {
         return;
     }
@@ -185,6 +184,20 @@ $("#addArtButton").click(function(event) {
             contentType: false,
             data: form_data
         });
+    });
+});
+
+$("#postButton").click(function(event) {
+    if (!validate()) {
+        return;
+    }
+
+    let dataString = `title=${$('#post-title').val()}&body=${$('#post-body').val()}`;
+
+    $.post('php/addPost.php', dataString, function () {
+        $('#postForm')[0].reset();
+        $('#addedPost').show();
+        $('#postForm').removeClass('was-validated');
     });
 });
 
