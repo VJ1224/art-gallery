@@ -51,7 +51,7 @@ form.container {
 	border-bottom: 5px solid;
 }
 
-.nav-tabs .nav-link:hover, .nav-tabs .nav-link.active:hover {
+.nav-tabs .nav-link:hover {
 	background-color: #bf4e6e;
 	border-radius: 50px 50px 0px 0px;
 	border-color: transparent;
@@ -83,6 +83,30 @@ form.container {
 	margin: 0rem;
 	top: calc(50% - (10rem / 2));
 	left: calc(50% - (10rem / 2));
+}
+
+.dropdown-menu {
+	width: 100%;
+	border-radius: 0px 0px 25px 25px;
+}
+
+.dropdown-menu > .dropdown-item:last-child {
+	border-radius: 0px 0px 12.5px 12.5px;
+}
+
+.dropdown-menu > .dropdown-item {
+	color: #16181b;
+}
+
+.dropdown-menu > .dropdown-item:hover {
+	color: #16181b;
+    background-color: #eeeeee;
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #BF4E6E;
 }
 
 #carousel-control {

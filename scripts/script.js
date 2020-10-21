@@ -10,6 +10,10 @@ $(document).ready(function() {
     });
 });
 
+$(".nav-tabs .nav-item .nav-link:not(.nav-tabs .nav-item.dropdown .nav-link), .dropdown-item").click(function() {
+    $(".dropdown-item.active").removeClass('active');
+});
+
 function validate(element) {
     $(element).addClass('was-validated');
     if (!$(element)[0].checkValidity()) {
