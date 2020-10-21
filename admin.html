@@ -36,10 +36,11 @@
 		
 		<div class="nav nav-tabs nav-fill">
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewArt">View Artwork</a>
+			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewArtist">View Artist</a>
+			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewSubs">View Subscriptions</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArt">Add Artwork</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArtist">Add Artist</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addPost">Add Post</a>
-			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewSubs">View Subscriptions</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#register">Register User</a>
 		</div>
 	</div>
@@ -157,6 +158,13 @@
 		<div class="tab-pane fade" id="viewSubs">
 			<h2 id='title'>Subscriptions</h2>
 			<div id="subTable"></div>
+			<input class='btn btn-danger mb-3' type='button' onclick='updateSubs()' value='Update'/>
+		</div>
+
+		<div class="tab-pane fade" id="viewArtist">
+			<h2 id='title'>Artists</h2>
+			<div id="artistTable"></div>
+			<input class='btn btn-danger mb-3' type='button' onclick='updateArtist()' value='Update'/>
 		</div>
 
 		<div class="tab-pane fade" id="addPost">
@@ -209,8 +217,8 @@
 				</div>
 
 				<div class="form-group">
-					<label for="city">City</label>
-					<input type="text" class="form-control" id="city" name="city" required />
+					<label for="location">Location</label>
+					<input type="text" class="form-control" id="location" name="location" required />
 				</div>
 
 				<div class="alert alert-danger alert-dismissible mt-3" id="errorArtist" role="alert">

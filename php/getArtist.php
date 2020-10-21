@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 if (isset($_GET['artist'])) {
     $name = $_GET['artist'];
 
-    $sql = "SELECT aname, mobile, email, city FROM artist WHERE aname='".$name."'";
+    $sql = "SELECT aname, mobile, email, location FROM artist WHERE aname='".$name."'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -29,7 +29,7 @@ if (isset($_GET['artist'])) {
                     <div class='modal-body'>" .
                     'Phone Number: ' . $row["mobile"] .
                     '<br>Email: ' . $row["email"] .
-                    '<br>Location: ' . $row["city"]
+                    '<br>Location: ' . $row["location"]
                     . "</div>
                     <div class='modal-footer'>
                         <button type='button' class='btn btn-secondary' data-dismiss='modal'>Close</button>

@@ -10,6 +10,12 @@ function updateArt() {
     });
 }
 
+function updateArtist() {
+    $.get('php/viewArtist.php', function (data) {
+        $('#artistTable').html(data);
+    });
+}
+
 function sortArt() {
     let sort = $('#sortArt').val();
     let order = $('#orderArt').val();
@@ -95,6 +101,7 @@ $(document).ready(function () {
     authorise();
     updateSubs();
     updateArt();
+    updateArtist();
 
     $('#addedArt').hide();
     $('#errorArt').hide();
@@ -211,7 +218,7 @@ $("#artistButton").click(function(event) {
         return;
     }
 
-    let dataString = `name=${$('#name').val()}&mobile=${$('#mobile').val()}&email=${$('#email').val()}&city=${$('#city').val()}`;
+    let dataString = `name=${$('#name').val()}&mobile=${$('#mobile').val()}&email=${$('#email').val()}&location=${$('#location').val()}`;
 
     $.post('php/addArtist.php', dataString, function (data) {
         if (data === "0") {

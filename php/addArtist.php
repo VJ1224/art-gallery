@@ -21,7 +21,7 @@ if ($conn->connect_error) {
 $name = (isset($_POST['name']) ? $_POST['name']: '');
 $mobile = intval(isset($_POST['mobile']) ? $_POST['mobile']: '0');
 $email = (isset($_POST['email']) ? $_POST['email']: '');
-$city = (isset($_POST['city']) ? $_POST['city']: '');
+$location = (isset($_POST['location']) ? $_POST['location']: '');
 
 
 $stmt = $conn->prepare("SELECT * FROM artist WHERE aname=?");
@@ -36,7 +36,7 @@ if($stmt->num_rows > 0) {
 
 $stmt = $conn->prepare("INSERT INTO artist VALUES (?,?,?,?)");
 
-$stmt->bind_param("siss", $name, $mobile, $email, $city);
+$stmt->bind_param("siss", $name, $mobile, $email, $location);
 $stmt->execute();
 $conn->close();
 ?>

@@ -103,3 +103,13 @@ form.container {
 h5#post-title, .list-group-item > div > h5 {
 	color: #e84545;
 }
+
+@media screen and (max-width: 600px) {
+	table thead {
+		display: none;
+	}
+	
+	table td {
+		display: flex;
+	}
+}
