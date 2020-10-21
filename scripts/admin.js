@@ -1,3 +1,9 @@
+$.get('php/authenticate.php', function (data) {
+    if (data === "0") {
+        window.location.replace("http://localhost/cia2-project/login.html");
+    }
+});
+
 function updateSubs() {
     $.get('php/subscriptions.php', function (data) {
         $('#subTable').html(data);
@@ -85,20 +91,7 @@ function editArt(row_id) {
     deleteArt(aname, artist);
 }
 
-function authorise() {
-    $.get('php/authenticate.php', function (data) {
-        if (data === "0") {
-            window.location.replace("http://localhost/cia2-project/login.html");
-        }
-    });
-
-    $.get('php/username.php', function (data) {
-        $('#greeting').html(data);
-    });
-}
-
 $(document).ready(function () {
-    authorise();
     updateSubs();
     updateArt();
     updateArtist();
@@ -114,6 +107,10 @@ $(document).ready(function () {
     $('#viewArt').tab('show');
     $('a[href="#viewArt"]').addClass('active');
 
+    $.get('php/username.php', function (data) {
+        $('#greeting').html(data);
+    });
+
     $.get('php/getArtist.php', function (data) {
         $('#artist').html(data);
     });
@@ -121,6 +118,7 @@ $(document).ready(function () {
     $.get('php/generateCSV.php', function (data) {
         $('#viewSubs #title').append('<br><a id="downloadButton" class="btn btn-danger" href="php/'+data+'" download>Download as CSV</a>');
     });
+    
 });
 
 $('#registerButton').click(function(event) {

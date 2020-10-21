@@ -54,6 +54,12 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>  
 
 	<script>
+	$.get('php/authenticate.php', function (data) {
+        if (data === "1") {
+			window.location.replace("http://localhost/cia2-project/admin.html");
+        }
+	});
+	
 	$("input[type='button']").click(function(event) {
 		let dataString = `username=${$('#username').val()}&password=${$('#password').val()}`
 
