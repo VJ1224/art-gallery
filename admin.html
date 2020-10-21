@@ -37,6 +37,7 @@
 		<div class="nav nav-tabs nav-fill">
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewArt">View Artwork</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArt">Add Artwork</a>
+			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addArtist">Add Artist</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#addPost">Add Post</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#viewSubs">View Subscriptions</a>
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#register">Register User</a>
@@ -177,6 +178,54 @@
 				</div>
 
 				<input type="button" class="btn btn-danger" id="postButton" value="Add" />
+				<input type="reset" class="btn btn-secondary" value="Clear"/>
+			</form>
+		</div>
+
+		<div class="tab-pane fade" id="addArtist">
+			<form class="container needs-validation my-5 shadow p-5" id="artistForm" novalidate>
+				<h2 id="title">Add Post</h2>
+				<div class="form-group">
+					<label for="name">Name</label>
+					<input type="text" class="form-control" id="name" name="name" required />
+				</div>
+
+				<div class="form-group">
+					<label for="mobile">Phone Number</label>
+					<input type="text" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10}" required />
+					<div class="invalid-feedback">
+						Enter a valid phone number.
+					</div>
+				</div>
+		
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="text" class="form-control" id="email" name="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+					<div class="invalid-feedback">
+						Enter a valid email address.
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="city">City</label>
+					<input type="text" class="form-control" id="city" name="city" required />
+				</div>
+
+				<div class="alert alert-danger alert-dismissible mt-3" id="errorArtist" role="alert">
+					Artist already exists!
+					<button type="button" class="close" data-dismiss="alert">
+					  <span>&times;</span>
+					</button>
+				</div>
+
+				<div class="alert alert-success alert-dismissible mt-3" id="addedArtist" role="alert">
+					Artist added successfully!
+					<button type="button" class="close" data-dismiss="alert">
+					  <span>&times;</span>
+					</button>
+				</div>
+
+				<input type="button" class="btn btn-danger" id="artistButton" value="Add" />
 				<input type="reset" class="btn btn-secondary" value="Clear"/>
 			</form>
 		</div>

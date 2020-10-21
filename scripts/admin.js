@@ -101,7 +101,8 @@ $(document).ready(function () {
     $('#registered').hide();
     $('#user-exists').hide();
     $('#addedPost').hide();
-
+    $('#addedArtist').hide();
+    $('#errorArtist').hide();
     
     $('#viewArt').tab('show');
     $('a[href="#viewArt"]').addClass('active');
@@ -198,6 +199,25 @@ $("#postButton").click(function(event) {
         $('#postForm')[0].reset();
         $('#addedPost').show();
         $('#postForm').removeClass('was-validated');
+    });
+});
+
+$("#artistButton").click(function(event) {
+    if (!validate('#artistForm')) {
+        return;
+    }
+
+    let dataString = `name=${$('#name').val()}&mobile=${$('#mobile').val()}&email=${$('#email').val()}&city=${$('#city').val()}`;
+
+    $.post('php/addArtist.php', dataString, function (data) {
+        if (data === "0") {
+            $('#errorArtist').show();
+            return;
+        }
+
+        $('#artistForm')[0].reset();
+        $('#addedArtist').show();
+        $('#artistForm').removeClass('was-validated');
     });
 });
 

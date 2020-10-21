@@ -42,6 +42,8 @@
 		</div>
 	</div>
 
+	
+    <div class="modal fade" id="artist-modal" data-backdrop="static" data-keyboard="false" tabindex="-1"></div>
 
 	<div class="tab-content mx-5 mt-3">
 		<div class="tab-pane fade" id="paintings"></div>
@@ -85,6 +87,13 @@
 		$('#paintings').tab('show');
 		$('a[href="#paintings"').addClass('active');
 	});
+
+	function showArtist(artist) {
+		$.get('php/getArtist.php?artist='+artist, function (data) {
+			$('#artist-modal').html(data);
+			$('#artist-modal').modal('show');
+		});
+	}
 	</script>
 </body>
 </html>
