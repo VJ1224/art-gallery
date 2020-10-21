@@ -124,6 +124,10 @@ form.container {
 	background-color: #D3D3D3;
 }
 
+#poem-author {
+	color: #b83b5e;
+}
+
 h5#post-title, .list-group-item > div > h5 {
 	color: #e84545;
 }
