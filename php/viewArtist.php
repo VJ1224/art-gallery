@@ -19,7 +19,7 @@ if ($conn->connect_error) {
     die();
 }
 
-$sql = "SELECT formatCurrency(SUM(price)) AS 'value', artist, COUNT(*) AS 'total', mobile, email, location FROM artwork INNER JOIN artist ON artwork.artist = artist.aname GROUP BY artist";
+$sql = "SELECT aname, mobile, email, location, total, value FROM `artist` LEFT JOIN `artistwork` ON artist.aname = artistwork.artist";
 $result = $conn->query($sql);
 $row_no = 1;
 
@@ -43,7 +43,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr id='row".$row_no."'>
         <th scope='row'>".$row_no."</th>
-        <td>".$row["artist"]."</td>
+        <td>".$row["aname"]."</td>
         <td>".$row["mobile"]."</td>
         <td>".$row["email"]."</td>
         <td>".$row["location"]."</td>

@@ -23,6 +23,8 @@ $artist = (isset($_POST['artist']) ? $_POST['artist']: '');
 $price = intval(isset($_POST['price']) ? $_POST['price']: '0');
 $atype = (isset($_POST['atype']) ? $_POST['atype']: '');
 
+echo $aname, $artist, $price, $atype;
+
 
 $stmt = $conn->prepare("SELECT * FROM artwork WHERE aname=? AND artist=?");
 $stmt->bind_param("ss", $aname, $artist);
