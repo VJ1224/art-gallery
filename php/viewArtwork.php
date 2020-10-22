@@ -19,12 +19,11 @@ if ($conn->connect_error) {
     die();
 }
 
-$sort = $_GET['sort'];
-$order = $_GET['order'];
-
-if ($sort == 'default') {
+if (!isset($_GET['sort'])) {
   $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork";
 } else {
+  $sort = $_GET['sort'];
+  $order = $_GET['order'];
   $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork ORDER BY ".$sort." ".$order;
 }
 

@@ -19,9 +19,8 @@ if ($conn->connect_error) {
 }
 
 $group = $_GET['group'];
-$order = $_GET['order'];
 
-$sql = "SELECT formatCurrency(SUM(price)) AS 'value', artist, atype, COUNT(*) AS 'total', SUM(price) AS 'price' FROM artwork GROUP BY ".$group." ORDER BY price ".$order;
+$sql = "SELECT formatCurrency(SUM(price)) AS 'value', artist, atype, COUNT(*) AS 'total' FROM artwork GROUP BY ".$group;
 
 $result = $conn->query($sql);
 $row_no = 1;

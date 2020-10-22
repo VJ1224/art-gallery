@@ -11,7 +11,7 @@ function updateSubs() {
 }
 
 function updateArt() {
-    $.get('php/viewArtwork.php?sort=default&order=ASC', function (data) {
+    $.get('php/viewArtwork.php', function (data) {
         $('#artTable').html(data);
     });
 }
@@ -33,7 +33,7 @@ function sortArt() {
 function groupArt() {
     let group = $('#sortArt').val();
     let order = $('#orderArt').val();
-    $.get('php/groupArtwork.php?group='+group+'&order='+order, function (data) {
+    $.get('php/groupArtwork.php?group='+group, function (data) {
         $('#artTable').html(data);
     });
 }
