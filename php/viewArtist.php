@@ -41,7 +41,7 @@ echo "<table class='table table-striped table-hover'>
 
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        echo "<tr id='row".$row_no."'>
+        echo "<tr>
         <th scope='row'>".$row_no."</th>
         <td>".$row["aname"]."</td>
         <td>".$row["mobile"]."</td>
