@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 session_start();
 
 $user = (isset($_POST['username']) ? $_POST['username']: '');
-$pass = hash('sha256', (isset($_POST['password']) ? $_POST['password']: ''));
+$pass = hash('sha256', $user . (isset($_POST['password']) ? $_POST['password']: ''));
 
 $stmt = $conn->prepare("SELECT username FROM users WHERE username=? AND password=?");
 
