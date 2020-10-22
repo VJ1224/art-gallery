@@ -128,6 +128,11 @@ form.container {
 	color: #b83b5e;
 }
 
+#subscribe-modal div form {
+	border-radius: 50px;
+	background-color: #f08a5d;
+}
+
 h5#post-title, .list-group-item > div > h5 {
 	color: #e84545;
 }
