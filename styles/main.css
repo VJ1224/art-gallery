@@ -133,7 +133,7 @@ form.container {
 	background-color: #f08a5d;
 }
 
-h5#post-title, .list-group-item > div > h5 {
+h3#post-title, .list-group-item > div > h5 {
 	color: #e84545;
 }
 
