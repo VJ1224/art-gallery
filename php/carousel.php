@@ -9,7 +9,12 @@ if ($conn->connect_error) {
     die();
 }
 
-$result = $conn->query("CALL randomArt(@p0, @p1)");
+$count = 5;
+
+$stmt = $conn->prepare("CALL randomArt(?, @aname, @artist)");
+$stmt->bind_param("i", $count);
+$stmt->execute();
+$result = $stmt->get_result();
 
 if ($result->num_rows > 0) {    
     echo "<ol class='carousel-indicators'>";
@@ -20,22 +25,22 @@ if ($result->num_rows > 0) {
 
     echo "<div class='carousel-inner'>";
     $row_num = 0;
-    while ($row = $result->fetch_row()) {
-        $image = $row[0]." ".$row[1];
+    while ($row = $result->fetch_assoc()) {
+        $image = $row["aname"]." ".$row["artist"];
         if ($row_num == 0) {
             echo "<div class='carousel-item active' style='height:24rem;' >
                 <img src='images/art/".$image.".jpg' class='d-block h-100' alt=".$image." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
-                    <h5>".$row[0]."</h5>
-                    <p>".$row[1]."</p>
+                    <h5>".$row["aname"]."</h5>
+                    <p>".$row["artist"]."</p>
                 </div>
                 </div>";
         } else {
             echo "<div class='carousel-item' style='height:24rem;'>
                 <img src='images/art/".$image.".jpg' class='d-block h-100' alt=".$image." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
-                    <h5>".$row[0]."</h5>
-                    <p>".$row[1]."</p>
+                    <h5>".$row["aname"]."</h5>
+                    <p>".$row["artist"]."</p>
                 </div>
                 </div>";
         }
