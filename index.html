@@ -128,10 +128,12 @@
 			$('#poem-body').html(body);
 		});
 
-		if (!sessionStorage.subscribed)
-		setTimeout(function () {
-			$('#subscribe-modal').modal('show');
-		}, 5000);
+		if (sessionStorage.getItem("subscribed") !== "1") {
+			setTimeout(function () {
+				$('#subscribe-modal').modal('show');
+			}, 5000);
+			sessionStorage.setItem("subscribed", "1");
+		}
 	});
 
 	$('input[type="button"]').click(function(event) {
@@ -143,7 +145,6 @@
 		$.post('php/subscribe.php', dataString);
 
 		$('#subscribe-modal').modal('hide');
-		sessionStorage.subscribed = 1;
 	});
 	</script>
 </body>

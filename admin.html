@@ -134,9 +134,9 @@
 		
 				<div class="form-group">
 					<label for="password1">Password</label>
-					<input type="password" class="form-control" name="password" id="password1" pattern="{8,}$" required>
+					<input type="password" class="form-control" name="password" id="password1" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$" required>
 					<div class="invalid-feedback">
-						Minimum eight characters.
+						Minimum eight characters, at least one upper case character, one lower case character, one number and one special character.
 					</div>
 				</div>
 

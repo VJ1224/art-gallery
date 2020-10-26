@@ -154,10 +154,10 @@ $('#registerButton').click(function(event) {
         if (data === "0") {
             $('#user-exists').show();
         } else {
+            $('#registerForm')[0].reset();
             $('#registered').show();
         }
-
-        $('#registerForm')[0].reset();
+        
         $('#registerForm').removeClass('was-validated');
         $('#password2').removeClass('is-valid');
     });
