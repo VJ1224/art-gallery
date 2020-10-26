@@ -103,6 +103,8 @@ $(document).ready(function () {
     $('#addedPost').hide();
     $('#addedArtist').hide();
     $('#errorArtist').hide();
+    $('#password-update').hide();
+    $('#password-wrong').hide();
     
     $('#viewArt').tab('show');
     $('a[href="#viewArt"]').addClass('active');
@@ -211,6 +213,25 @@ $("#postButton").click(function(event) {
     });
 });
 
+$("#updatePasswordButton").click(function(event) {
+    if (!validate('#passwordForm')) {
+        return;
+    }
+
+    let dataString = `username=${$('#password-username').val()}&oldpass=${$('#password-old').val()}&newpass=${$('#password-new').val()}`;
+
+    $.post('php/updatePassword.php', dataString, function (data) {
+        if (data === "0") {
+            $('#password-wrong').show();
+            return;
+        } 
+
+        $('#passwordForm')[0].reset();
+        $('#password-update').show();
+        $('#passwordForm').removeClass('was-validated');
+    });
+});
+
 $("#artistButton").click(function(event) {
     if (!validate('#artistForm')) {
         return;
@@ -236,7 +257,7 @@ $("#logout").click(function() {
     });
 });
 
-$('#showPassword').click(function() {
+function showPassword() {
     if('password' == $('#password1').attr('type')){
         $('#password1').prop('type', 'text');
         $('#password2').prop('type', 'text');
@@ -244,4 +265,12 @@ $('#showPassword').click(function() {
         $('#password1').prop('type', 'password');
         $('#password2').prop('type', 'password');
     }
-});
+
+    if('password' == $('#password-old').attr('type')){
+        $('#password-old').prop('type', 'text');
+        $('#password-new').prop('type', 'text');
+    } else {
+        $('#password-old').prop('type', 'password');
+        $('#password-new').prop('type', 'password');
+    }
+}
