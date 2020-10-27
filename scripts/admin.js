@@ -26,6 +26,10 @@ function updateArtist() {
     $.get('php/viewArtist.php', function (data) {
         $('#artistTable').html(data);
     });
+
+    $.get('php/getArtist.php', function (data) {
+        $('#artist').html(data);
+    });
 }
 
 function sortArt() {
@@ -125,10 +129,6 @@ $(document).ready(function () {
 
     $.get('php/username.php', function (data) {
         $('#greeting').html(data);
-    });
-
-    $.get('php/getArtist.php', function (data) {
-        $('#artist').html(data);
     });
 
     $.get('php/generateCSV.php', function (data) {
