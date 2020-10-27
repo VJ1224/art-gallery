@@ -33,7 +33,7 @@ if($stmt->num_rows > 0) {
   die();
 }
 
-$stmt = $conn->prepare("INSERT INTO artwork VALUES (?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO artwork VALUES (?,?,?,?,0)");
 
 $stmt->bind_param("ssis", $aname, $artist, $price, $atype);
 $stmt->execute();

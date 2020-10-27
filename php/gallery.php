@@ -12,7 +12,7 @@ if ($conn->connect_error) {
 
 $type = $_GET['type'];
 
-$sql = "SELECT formatCurrency(price) as 'price', aname, artist FROM artwork WHERE atype='".$type."'";
+$sql = "SELECT formatCurrency(price) as 'price', aname, artist FROM artwork WHERE atype='".$type."' AND sold=0";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
@@ -24,7 +24,7 @@ if ($result->num_rows > 0) {
                         <h5 class='card-title'>".$row["aname"]."</h5>
                         <h6 class='card-subtitle mb-2 text-muted'>".$row["artist"]."</h6>
                         <p class='card-text'>Price: ".$row["price"]."</p>
-                        <a href='#' class='btn btn-danger' onclick='showArtist(`".$row["artist"]."`)'>Buy Now</a>
+                        <a href='#' class='btn btn-danger' onclick='order(`".$row["aname"]."`,`".$row["artist"]."`)'>Buy Now</a>
                     </div>
                 </div>";
     }

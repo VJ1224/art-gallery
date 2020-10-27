@@ -20,11 +20,11 @@ if ($conn->connect_error) {
 }
 
 if (!isset($_GET['sort'])) {
-  $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork";
+  $sql = "SELECT *, formatCurrency(price) as 'value' FROM artwork";
 } else {
   $sort = $_GET['sort'];
   $order = $_GET['order'];
-  $sql = "SELECT formatCurrency(price) as 'value', aname, atype, artist FROM artwork ORDER BY ".$sort." ".$order;
+  $sql = "SELECT *, formatCurrency(price) as 'value' FROM artwork ORDER BY ".$sort." ".$order;
 }
 
 $result = $conn->query($sql);
@@ -39,6 +39,7 @@ echo "<table class='table table-striped table-hover'>
           <th scope='col'>Artist</th>
           <th scope='col'>Price</th>
           <th scope='col'>Type</th>
+          <th scope='col'>Sold</th>
           <th scope='col'></th>
           </tr>
       </thead>
@@ -52,8 +53,11 @@ if ($result->num_rows > 0) {
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
         <td>".$row["value"]."</td>
-        <td>".$row["atype"]."</td>
-        <td>
+        <td>".$row["atype"]."</td>";
+        if ($row["sold"] == 1)
+        echo "<td>Yes</td>";
+        else echo "<td>No</td>";
+        echo "<td>
           <input class='btn btn-danger' type='button' onclick='editArt(`artwork".$row_no."`)' value='Edit'/>
           <input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"]."`,`".$row["artist"]."`)' value='Delete'/>
         </td>

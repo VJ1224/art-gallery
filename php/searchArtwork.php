@@ -22,7 +22,7 @@ $search = "%".$_GET['search']."%";
 $category = $_GET['category'];
 $row_no = 1;
 
-$sql = "SELECT formatCurrency(price) as 'price', aname, atype, artist FROM artwork WHERE ".$category." LIKE ?";
+$sql = "SELECT *, formatCurrency(price) as 'price' FROM artwork WHERE ".$category." LIKE ?";
 $stmt = $conn->prepare($sql);
 $stmt->bind_param("s", $search);
 $stmt->execute();
@@ -37,6 +37,7 @@ echo "<table class='table table-striped table-hover'>
           <th scope='col'>Artist</th>
           <th scope='col'>Price</th>
           <th scope='col'>Type</th>
+          <th scope='col'>Sold</th>
           <th scope='col'></th>
           </tr>
       </thead>
@@ -49,8 +50,11 @@ if ($result->num_rows > 0) {
         <td>".$row["aname"]."</td>
         <td>".$row["artist"]."</td>
         <td>".$row["price"]."</td>
-        <td>".$row["atype"]."</td>
-        <td>
+        <td>".$row["atype"]."</td>";
+        if ($row["sold"] == 1)
+        echo "<td>Yes</td>";
+        else echo "<td>No</td>";
+        echo "<td>
           <input class='btn btn-danger' type='button' onclick='editArt(`row".$row_no."`)' value='Edit'/>  
           <input class='btn btn-danger' type='button' onclick='deleteArt(`".$row["aname"]."`,`".$row["artist"]."`)' value='Delete'/>
         </td>

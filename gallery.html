@@ -41,9 +41,52 @@
 			<a class="nav-item nav-link pb-3 pt-3" data-toggle="tab" href="#digital">Digital</a>
 		</div>
 	</div>
-
 	
-    <div class="modal fade" id="artist-modal" data-backdrop="static" data-keyboard="false" tabindex="-1"></div>
+    <div class="modal fade" id="order-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+				<h5 class="modal-title" id="order-title"></h5>
+				<button type="button" class="close" data-dismiss="modal">
+					<span>&times;</span>
+				</button>
+				</div>
+				<div class="modal-body" id="order-body">
+					<form class="needs-validation" id="orderForm" novalidate>
+						<div class="form-group">
+							<label for="name">Name</label>
+							<input type="text" class="form-control" id="name" name="name" required />
+						</div>
+		
+						<div class="form-group">
+							<label for="mobile">Phone Number</label>
+							<input type="text" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10}" required />
+							<div class="invalid-feedback">
+								Enter a valid phone number.
+							</div>
+						</div>
+				
+						<div class="form-group">
+							<label for="email">Email</label>
+							<input type="text" class="form-control" id="email" name="email" pattern="[^@ \t\r\n]+@[^@ \t\r\n]+\.[^@ \t\r\n]+" required />
+							<div class="invalid-feedback">
+								Enter a valid email address.
+							</div>
+						</div>
+						
+						<input type="hidden" id="aname" value="" />
+						<input type="hidden" id="artist" value="" />
+							
+						<input type="button" class="btn btn-danger" id="orderButton" value="Order" />
+					</form>
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<div class="tab-content mx-5 mt-3">
 		<div class="tab-pane fade" id="paintings"></div>
@@ -88,12 +131,28 @@
 		$('a[href="#paintings"').addClass('active');
 	});
 
-	function showArtist(artist) {
-		$.get('php/getArtist.php?artist='+artist, function (data) {
-			$('#artist-modal').html(data);
-			$('#artist-modal').modal('show');
-		});
+	function order(aname, artist) {
+		$('#order-title').html(aname + " by " + artist);
+		$('#aname').prop('value', aname);
+        $('#artist').prop('value', artist);
+		$('#order-modal').modal('show');
 	}
+
+	$("#orderButton").click(function(event) {
+		if (!validate('#orderForm')) {
+			return;
+		}
+
+		let dataString = `name=${$('#name').val()}&mobile=${$('#mobile').val()}&email=${$('#email').val()}&aname=${$('#aname').val()}&artist=${$('#artist').val()}`;
+
+		$.post('php/order.php', dataString, function () {
+			$('#order-body').html(`
+				<p>
+					Thank you for your purchase! We will contact you soon.	
+				</p>
+			`);
+		});
+	});
 	</script>
 </body>
 </html>

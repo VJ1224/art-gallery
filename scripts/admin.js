@@ -10,6 +10,12 @@ function updateSubs() {
     });
 }
 
+function updateOrders() {
+    $.get('php/viewOrders.php', function (data) {
+        $('#ordersTable').html(data);
+    });
+}
+
 function updateArt() {
     $.get('php/viewArtwork.php', function (data) {
         $('#artTable').html(data);
@@ -91,10 +97,18 @@ function editArt(row_id) {
     deleteArt(aname, artist);
 }
 
+function completeOrder(aname, artist) {
+    let dataString = `aname=${aname}&artist=${artist}`;
+    $.post('php/completeOrder.php', dataString, function () {
+        updateOrders();
+    });
+}
+
 $(document).ready(function () {
     updateSubs();
     updateArt();
     updateArtist();
+    updateOrders();
 
     $('#addedArt').hide();
     $('#errorArt').hide();
