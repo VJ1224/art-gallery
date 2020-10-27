@@ -86,6 +86,10 @@ form.container {
 	left: calc(50% - (10rem / 2));
 }
 
+.card {
+	border-radius: 25px;
+}
+
 .dropdown-menu {
 	width: 100%;
 	border-radius: 0px 0px 25px 25px;
@@ -108,6 +112,13 @@ form.container {
     color: #fff;
     text-decoration: none;
     background-color: #BF4E6E;
+}
+
+.carousel-indicators li {
+	border-radius: 50%;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: #903749;
 }
 
 #carousel-control {

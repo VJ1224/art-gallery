@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     echo "<div class='card-columns'>";
     while ($row = $result->fetch_assoc()) {
-        echo    "<div class='card mb-3 shadow'>
+        echo    "<div class='card bg-light mb-3 shadow'>
                     <img src='images/art/".$row["aname"]." ".$row["artist"].".jpg' class='card-img-top img-fluid'>
                     <div class='card-body'>
                         <h5 class='card-title'>".$row["aname"]."</h5>
