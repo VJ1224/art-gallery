@@ -23,7 +23,7 @@
 			<ul class="ml-auto navbar-nav navbar-right">
 				<li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 				<li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-				<li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+				<li class="nav-item"><a class="nav-link" href="news.html">News</a></li>
 				<li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 			</ul>
 		</div>
@@ -33,7 +33,7 @@
 		<div class="modal-dialog modal-xl">
 		  	<div class="modal-content">
 				<div class="modal-header">
-			  	<h3 class="modal-title" id="post-title"></h3>
+			  	<h3 class="modal-title" id="post-title" style="font-weight: bold;"></h3>
 			  	<button type="button" class="close" data-dismiss="modal" onclick="clearPost()">
 					<span>&times;</span>
 			  	</button>
@@ -49,12 +49,8 @@
 
 	<div class="jumbotron jumbotron-fluid mb-0">
 		<div class="container">
-		  <h1 class="display-4">Blog</h1>
+		  <h1 class="display-4">News</h1>
 		</div>
-	</div>
-	
-	<div class="container mt-3">
-		<h3>Latest Posts</h3>
 	</div>
 
 	<div class="container mt-3" id="blog-posts">
@@ -82,7 +78,7 @@
 	});
 
 	function loadPost(element) {
-		let title = $(element).find('h4').html();
+		let title = $(element).find('h5').html();
 		$('#post-title').html(title);
     	let content = "blog/" + encodeURIComponent(title) + ".txt";
     	$('#post-body').load(content);
