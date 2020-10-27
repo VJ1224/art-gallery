@@ -28,7 +28,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $image = $row["aname"]." ".$row["artist"];
         if ($row_num == 0) {
-            echo "<div class='carousel-item active' style='height:24rem;' >
+            echo "<div class='carousel-item active' style='height:24rem;'>
                 <img src='images/art/".$image.".jpg' class='d-block h-100' alt=".$image." style='margin: auto;'>
                 <div class='carousel-caption d-none d-md-block'>
                     <h5>".$row["aname"]."</h5>
