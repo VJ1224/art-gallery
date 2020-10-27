@@ -34,7 +34,7 @@
 		  <h1 class="display-4">Gallery</h1>
 		  <p class="lead">Browse our collection of art pieces.</p>
 		  <div class="dropdown">
-			  <a class="btn btn-danger mb-3 dropdown-toggle w-25" href="#" role="button" data-toggle="dropdown">
+			  <a class="btn btn-danger mb-3 dropdown-toggle w-25" href="#" role="button" id="category" data-toggle="dropdown">
 				Category
 			  </a>
 			  <div class="dropdown-menu w-25">
@@ -45,8 +45,6 @@
 			  </div>
 		  </div>
 		</div>
-		<!-- <div class="nav nav-tabs nav-fill mx-5">
-		</div> -->
 	</div>
 	
 	<div class="modal fade" id="order-modal" data-backdrop="static" data-keyboard="false" tabindex="-1">
@@ -136,6 +134,10 @@
 
 		$('#paintings').tab('show');
 		$('a[href="#paintings"').addClass('active');
+	});
+
+	$('.dropdown-menu .dropdown-item').click(function() {
+		$('#category').html($(this).html());
 	});
 
 	function order(aname, artist) {

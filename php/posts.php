@@ -18,7 +18,7 @@ if (is_dir($dir)) {
 
         echo "<a href='#' class='list-group-item list-group-item-action' onclick='loadPost(this)'>
         <div class='d-flex w-100 justify-content-between'>
-        <h5 class='mb-1'>" . $title . "</h5>
+        <h4 class='mb-1'>" . $title . "</h4>
         <small>" . $date ."</small>
         </div>
         <p class='mb-1'>" . $summary . "...</p>

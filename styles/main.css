@@ -145,7 +145,7 @@ form.container {
 	background-color: #f08a5d;
 }
 
-h3#post-title, .list-group-item > div > h5 {
+h3#post-title, .list-group-item > div > h4 {
 	color: #e84545;
 }
 

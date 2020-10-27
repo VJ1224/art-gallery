@@ -52,7 +52,6 @@
 		  <h1 class="display-4">Blog</h1>
 		</div>
 	</div>
-
 	
 	<div class="container mt-3">
 		<h3>Latest Posts</h3>
@@ -83,7 +82,7 @@
 	});
 
 	function loadPost(element) {
-		let title = $(element).find('h5').html();
+		let title = $(element).find('h4').html();
 		$('#post-title').html(title);
     	let content = "blog/" + encodeURIComponent(title) + ".txt";
     	$('#post-body').load(content);
