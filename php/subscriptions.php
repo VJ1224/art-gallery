@@ -40,7 +40,7 @@ if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo "<tr>
         <th scope='row'>".$row_no."</th>
-        <td>".$row["fname"]."</td>
+        <td>".$row["name"]."</td>
         <td>".$row["email"]."</td>
       </tr>";
       $row_no++;

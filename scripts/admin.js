@@ -57,7 +57,7 @@ function disableButtons() {
         $('#searchArt').prop('disabled', false);
     }
 
-    if (column === 'aname' || column === 'price') {
+    if (column === 'aname' || column === 'price' || column === 'sold') {
         $('#groupArt').prop('disabled', true);
     } else {
         $('#groupArt').prop('disabled', false);

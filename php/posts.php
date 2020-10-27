@@ -9,13 +9,14 @@ if (is_dir($dir)) {
     });
 
     echo "<ul class='list-group'>";
-    
     foreach ($posts as $post) {
         $title = substr($post, 0, (strrpos($post, ".")));
         $content = file_get_contents('../blog/' . $post);
-        $summary = substr($content, strpos($content, "<p>"), strpos($content, "</p>")+4);
         $date = date("j M Y", filemtime('../blog/' . $post));
-
+        
+        if (strpos($content, "<p>") === false) $summary = "Read More";
+        else $summary = substr($content, strpos($content, "<p>"), strpos($content, "</p>")+4);
+        
         echo "<a href='#' class='list-group-item list-group-item-action' onclick='loadPost(this)'>
         <div class='d-flex w-100 justify-content-between'>
         <h5 class='mb-1' style='font-weight:bold;'>" . $title . "</h5>
