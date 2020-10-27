@@ -27,6 +27,6 @@ $result = $conn->query($sql);
 $conn->close();
 
 $dir = '../images/art/';
-$filename = $aname.".jpg";
+$filename = $aname." ".$artist.".jpg";
 unlink($dir.$filename);
 ?>
