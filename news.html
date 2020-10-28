@@ -80,7 +80,7 @@
 	function loadPost(element) {
 		let title = $(element).find('h5').html();
 		$('#post-title').html(title);
-    	let content = "blog/" + encodeURIComponent(title) + ".txt";
+    	let content = "news/" + encodeURIComponent(title) + ".txt";
     	$('#post-body').load(content);
 		$('#post-modal').modal('show');
 	}
