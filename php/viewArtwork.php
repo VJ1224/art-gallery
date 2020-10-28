@@ -1,13 +1,4 @@
 <?php
-ob_start();
-include('authenticate.php');
-$auth = ob_get_contents();
-ob_end_clean();
-
-if ($auth == "0") {
-  die();
-}
-
 $servername = "localhost";
 $username = "root";
 $password = "";

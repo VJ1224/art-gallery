@@ -40,10 +40,10 @@
 						Category
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" data-toggle="tab" href="#gallery" onclick="loadGallery('painting')">Paintings</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery" onclick="loadGallery('sculpture')">Sculptures</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery" onclick="loadGallery('photo')">Photos</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery" onclick="loadGallery('digital')">Digital</a>
+						<a class="dropdown-item" data-toggle="tab" href="#gallery">Paintings</a>
+						<a class="dropdown-item" data-toggle="tab" href="#gallery">Sculptures</a>
+						<a class="dropdown-item" data-toggle="tab" href="#gallery">Photos</a>
+						<a class="dropdown-item" data-toggle="tab" href="#gallery">Digital</a>
 					</div>
 				</div>
 
@@ -53,11 +53,15 @@
 				<div class="form-group ml-3">
 					<input class="btn btn-danger" id="searchButton" type='button' value='Search'/>
 				</div>
-				<div class='form-group mx-3'>
-					<select class='form-control' id="searchCategory">
-						<option value='aname'>Name</option>
-						<option value='artist'>Artist</option>
-					</select>
+
+				<div class="dropdown ml-3">
+					<a class="btn btn-danger mb-3 dropdown-toggle" href="#" role="button" id="sort" data-toggle="dropdown">
+						Sort Price
+					</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item">Low to High</a>
+						<a class="dropdown-item">High to Low</a>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -130,26 +134,47 @@
 	
 	<script>
 	$(document).ready(function() {
-		loadGallery('painting');
+		loadGallery();
 	});
 
-	$('.dropdown-menu .dropdown-item').click(function() {
-		$('#category').html($(this).html());
+	$('#category + .dropdown-menu .dropdown-item').click(function() {
+		let category = $(this).html()
+		$('#category').html(category);
+		loadGallery(category);
+	});
+
+	$('#sort + .dropdown-menu .dropdown-item').click(function() {
+		$('#sort').html($(this).html());
+		loadGallery($('#category').html().trim());
 	});
 
 	$("#searchButton").click(function(event) {
-		let dataString = `search=${$('#searchVal').val()}&category=${$('#searchCategory').val()}`;
+		let dataString = `search=${$('#searchVal').val()}`;
 
 		$.get('php/searchArtwork.php', dataString, function (data) {
 			$('#gallery').html(data);
 		});
 	});
 
-	function loadGallery(category) {
-		console.log(category);
-		$.get('php/gallery.php?type='+category, function (data) {
+	function loadGallery(category='painting') {
+		let order = $('#sort').html();
+		
+		switch(category) {
+			case 'Paintings': category = 'painting'; break;
+			case 'Sculptures': category = 'sculpture'; break;
+			case 'Photos': category = 'photo'; break;
+			case 'Digital': category = 'digital'; break;
+			default: category = 'painting';
+		}
+
+		switch(order) {
+			case 'Low to High': order = 'ASC'; break;
+			case 'High to Low': order = 'DESC'; break;
+			default: order = 'ASC';
+		}
+		
+		$.get('php/gallery.php?type='+category+'&order='+order, function (data) {
 			$('#gallery').html(data);
-			console.log(data);
 		});
 	}
 
