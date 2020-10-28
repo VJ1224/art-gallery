@@ -11,6 +11,6 @@ if ($auth == "0") {
 $title = (isset($_POST['title']) ? $_POST['title']: '');
 $body = (isset($_POST['body']) ? $_POST['body']: '');
 
-$path = '../blog/' . $title . '.txt';
+$path = '../news/' . $title . '.txt';
 file_put_contents($path, $body);
 ?>

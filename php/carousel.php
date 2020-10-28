@@ -9,7 +9,7 @@ if ($conn->connect_error) {
     die();
 }
 
-$count = 5;
+$count = 8;
 
 $stmt = $conn->prepare("CALL randomArt(?, @aname, @artist)");
 $stmt->bind_param("i", $count);
