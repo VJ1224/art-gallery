@@ -1,18 +1,18 @@
 <?php
-$dir = '../blog';
+$dir = '../news';
 
 if (is_dir($dir)) {
     $posts = array_values(array_diff(scandir($dir), array('.', '..')));
     
     usort($posts, function($a, $b) {
-        return filemtime('../blog/' . $a) < filemtime('../blog/' . $b);
+        return filemtime('../news/' . $a) < filemtime('../news/' . $b);
     });
 
     echo "<ul class='list-group'>";
     foreach ($posts as $post) {
         $title = substr($post, 0, (strrpos($post, ".")));
-        $content = file_get_contents('../blog/' . $post);
-        $date = date("j M Y", filemtime('../blog/' . $post));
+        $content = file_get_contents('../news/' . $post);
+        $date = date("j M Y", filemtime('../news/' . $post));
         
         if (strpos($content, "<p>") === false) $summary = "Read More";
         else $summary = substr($content, strpos($content, "<p>"), strpos($content, "</p>")+4);

@@ -74,7 +74,7 @@ function deleteArt(aname, artist) {
 function searchArt() {
     let query = $('#searchVal').val();
     let category = $('#sortArt').val();
-    $.get('php/searchArtwork.php?search='+query+'&category='+category, function (data) {
+    $.get('php/searchArtwork.php?admin=yes&search='+query+'&category='+category, function (data) {
         $('#artTable').html(data);
     })
 }
