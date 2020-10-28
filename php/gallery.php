@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 $type = $_GET['type'];
 $order = $_GET['order'];
 
-$sql = "SELECT formatCurrency(price) as 'value', aname, artist FROM artwork WHERE atype='".$type."' AND sold=0 ORDER BY price ".$order;
+$sql = "SELECT *, formatCurrency(price) as 'value' FROM artwork WHERE atype='".$type."' AND sold=0 ORDER BY price ".$order;
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

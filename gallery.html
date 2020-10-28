@@ -40,10 +40,10 @@
 						Category
 					</a>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" data-toggle="tab" href="#gallery">Paintings</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery">Sculptures</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery">Photos</a>
-						<a class="dropdown-item" data-toggle="tab" href="#gallery">Digital</a>
+						<a class="dropdown-item">Paintings</a>
+						<a class="dropdown-item">Sculptures</a>
+						<a class="dropdown-item">Photos</a>
+						<a class="dropdown-item">Digital</a>
 					</div>
 				</div>
 
@@ -170,7 +170,7 @@
 		switch(order) {
 			case 'Low to High': order = 'ASC'; break;
 			case 'High to Low': order = 'DESC'; break;
-			default: order = 'ASC';
+			default: order = 'DESC';
 		}
 		
 		$.get('php/gallery.php?type='+category+'&order='+order, function (data) {
